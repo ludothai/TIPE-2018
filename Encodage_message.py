@@ -1,4 +1,4 @@
-/#Codage du message 1 caractere = 8 bits
+#Codage du message 1 caractere = 8 bits
 
 def encodage(m): # message en string donne une liste d'entiers 0 ou 1
     if type(m) != str :
