@@ -1,12 +1,12 @@
-#Codage du message 1 caractère = 8 bits
+#Codage du message 1 caractere = 8 bits
 
 def encodage(m): # message en string donne une liste d'entiers 0 ou 1
     if type(m) != str :
         raise TypeError
-    M = list(m) # on split tout en caractères individuels
+    M = list(m) # on split tout en caracteres individuels
     Mord = [ord(M[i]) for i in range(len(M))]
     Mbin = [bin(Mord[i]) for i in range(len(M))]
-    # traitement du Mbin pour enlever le '0b' du début et taille constante
+    # traitement du Mbin pour enlever le '0b' du debut et taille constante
     Mfin=[]
     for binaire in Mbin:
         binaire=binaire[2:]
