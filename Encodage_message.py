@@ -24,4 +24,14 @@ def encodage(m): # message en string donne une liste d'entiers 0 ou 1
     return Mfin
     
 def decodage(M):
+    n=len(M)/8
+    Mbin=[]
+    for i in range(n):
+        binaire=sum(M[i:i+9])
+        Mbin.append(binaire)
+    Mord=[int(binaire,2) for binaire in Mbin]
+    m=sum([chr(i) for i in Mord])
+    return m
+
+        
     
