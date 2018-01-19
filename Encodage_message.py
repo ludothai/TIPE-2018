@@ -1,4 +1,4 @@
-#Codage du message 1 caractere = 8 bits
+/#Codage du message 1 caractere = 8 bits
 
 def encodage(m): # message en string donne une liste d'entiers 0 ou 1
     if type(m) != str :
@@ -24,7 +24,7 @@ def encodage(m): # message en string donne une liste d'entiers 0 ou 1
     return Mfin
     
 def decodage(M):
-    n=len(M)/8
+    n=len(M)//8
     Mbin=[]
     for i in range(n):
         binaire=sum(M[i:i+9])
