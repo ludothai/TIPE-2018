@@ -8,11 +8,11 @@ Objectifs à se partager :
 -	Développer un système permettant de trouver un nombre premier p et un générateur g de Z/pZ efficacement.
 
 Mots clés :
--	Signature
--	Asymétrique
--	Attaque
--	Chiffrement
--	Nombre premier
+-	Signature - signature
+-	Asymétrique -asymetric
+-	Attaque - attack 
+-	Chiffrement - encryption
+-	Nombre premier - prime number
 
 Bibliographie :
 La cryptologie consiste en l'étude des techniques destinées à protéger l’information contre une attaque malveillante. Trois acteurs font partie d’un système cryptologique : l’émetteur et le destinataire du message mais aussi l’adversaire. Un système cryptographique est un ensemble de protocoles et d’algorithmes qui permettent à l’émetteur et au destinataire d’échanger des données de manière sur. Le chiffrement est la technique dont l’objectif est de maintenir le message secret. C’est l’utilisation traditionnelle de la cryptographie qui trouve son origine très ancienne dans les applications militaires. Actuellement, le chiffrement n’est qu’un service parmi d’autres offert par la cryptographie.
