@@ -1,11 +1,12 @@
 Objectifs à se partager :
--	Mettre en place les multiples algorithmes utiles à la mise en place du cryptosystème.
--	Monter une application concrète sur des micro ordinateurs permettant une discussion sécurisée à moindres frais.
--	Comparaison avec les cryptosystèmes les plus répandus ( RSA, ... )
--	Attaques de la conversation avec un ordinateur puissant pour évaluer la sécurité du cryptage. 
--	Déterminer le compromis entre longueur de clé et sécurité.
--	Evaluer la résistance aux différentes attaques (résolution mathématiques des problèmes cf TD).
--	Développer un système permettant de trouver un nombre premier p et un générateur g de Z/pZ efficacement.
+-	Mettre en place les multiples algorithmes utiles à la mise en place du cryptosystème.(Thai)
+-	Monter une application concrète sur des micro ordinateurs permettant une discussion sécurisée à moindres frais.(Besson)
+-	Mise en place des cryptosystèmes concurrents et les attaques correspondantes sur les même machines.(Besson)
+- Analyse des mesures des différents cryptosystèmes dans le but d'associer un cryptosystème à une utilisation concrète. (Naudé)
+-	Attaques de la conversation avec un ordinateur puissant pour évaluer la sécurité du cryptage. (Besson)
+-	Déterminer le compromis entre longueur de clé et sécurité. (Thai)
+-	Evaluer la résistance aux différentes attaques (résolution mathématiques des problèmes cf TD).(Naudé)
+-	Développer un système permettant de trouver un nombre premier p et un générateur g de Z/pZ efficacement.(Naudé)
 
 Mots clés :
 -	Signature - signature
