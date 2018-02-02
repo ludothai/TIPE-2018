@@ -22,3 +22,5 @@ Dès lors, un mécanisme de signature est requis pour garantir l’authenticité
 La sécurité du système de cryptage est basée sur la difficulté du problème du logarithme discret. Les seul algorithmes connus permettant de résoudre ce problème sont inaplicables en temps raisonnable. Plusieurs modèles d’attaques existent donc pour contourner cette difficulté. Ils exploitent la connaissance de messages et cryptés. 
 Problématique :
 La qualité d’un cryptosystème s’évalue sur le compromis entre rapidité et sécurité. Comment peut-on développer une application concrète de ce cryptosystème et quelles en sont les performances concrètes ?  
+
+test
