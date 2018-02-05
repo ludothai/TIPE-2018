@@ -27,5 +27,9 @@ Enfin, dans le but de garantir l’authenticité des clés publiques utilisées 
 
 
 --- Problématique :
-La qualité d’un cryptosystème s’évalue aujourd'hui sur le compromis entre rapidité et sécurité. Comment peut-on développer une application concrète du cryptosystème d'El Gamal et qu'en ai t'il de sa qualité?  
+La qualité d’un cryptosystème s’évalue aujourd'hui sur le compromis entre rapidité et sécurité. Comment peut-on développer une application concrète du cryptosystème d'El Gamal et qu'en est il de ses performances?  
 
+
+-- Bibliographie [Auteur][Titre][Référence]
+1. BRAN BECKETT - Introduction aux méthodes de la cryptologie - Ed. Masson 1990
+2. GILLES ZEMOR - Cours de cryptographie - Ed. Cassini 2000
