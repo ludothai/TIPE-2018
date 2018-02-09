@@ -1,6 +1,7 @@
 #Codage du message 1 caractere = 8 bits
 
-def encodage(m): # message en string donne une liste d'entiers 0 ou 1
+def encodage(m):
+    """Message en STRING retourné en binaire 8 bits (table AISCII) """
     if type(m) != str :
         raise TypeError
     M = list(m) # on split tout en caracteres individuels
@@ -13,7 +14,7 @@ def encodage(m): # message en string donne une liste d'entiers 0 ou 1
         n=len(binaire)
         if n>8:
             return 'Erreur len(binaire)'
-        for i in range(8-n):
+        for i in range(8-n): # complète avec des zéros
             Mfin.append(0)
         for i in binaire:
             Mfin.append(int(i))
@@ -22,7 +23,7 @@ def encodage(m): # message en string donne une liste d'entiers 0 ou 1
     print("Mord=",Mord)
     print("Mbin=",Mbin)
     return Mfin
-    
+
 def decodage(M):
     n=len(M)//8
     Mfin=[str(i) for i in M]
@@ -38,6 +39,3 @@ def decodage(M):
     for i in range(1,len(Mchr)):
         m+=Mchr[i]
     return m
-
-        
-    

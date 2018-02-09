@@ -14,4 +14,3 @@ def XOR(b1,b2):
 def Ronde(G,D,K):
     ED=[D[i] for i in E]
     Dprim=[XOR(D[i],K[i]) for i in range(48)]
-    
