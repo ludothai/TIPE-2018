@@ -38,7 +38,7 @@ class ThreadServeurEmission(Thread):
 
 import socket
 
-hote = '192.168.1.16'
+hote=''
 port = 12800
 
 connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

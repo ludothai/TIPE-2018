@@ -36,7 +36,7 @@ class ThreadClientEmission(Thread):
 
 import socket
 
-hote = "192.168.1.16"
+hote = "adresse ip à entrer"
 port = 12800
 
 connexion_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
