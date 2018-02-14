@@ -1,0 +1,1 @@
+Attaque par factorisation et préconisation : blog.fkraiem.org/2013/01/09/attaques-sur-rsa-part-1-lalgo-p-1-de-pollard/

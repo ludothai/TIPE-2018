@@ -1,4 +1,4 @@
---- Objectifs à se partager :
+﻿--- Objectifs à se partager :
 -	Codage des algorithmes en langage Python 3 pour crypter et décrypter des données avec le cryptosystème d'ElGamal avec l'algorithme chiffrement DES.(Thai)
 -	Monter une application concrète sur des micro ordinateurs permettant une discussion sécurisée à moindres frais.(Besson)
 -	Mise en place des cryptosystèmes concurrents et les attaques correspondantes sur les même machines.(Besson)
@@ -6,7 +6,7 @@
 -	Attaques de la conversation avec un ordinateur puissant pour évaluer la sécurité du cryptage. (Besson)
 -	Etude de la sécurité du cryptosystème en fonction des tailles des différents paramètres du cryptosystème: clé, message. (Thai)
 -	Evaluer la résistance aux différentes attaques (résolution mathématiques des problèmes cf TD).(Naudé)
--	Développer un système permettant de trouver un nombre premier p et un générateur g de Z/pZ efficacement.(Naudé)
+-	PRIORITE : Développer un système permettant de trouver un nombre premier p et un générateur g de Z/pZ efficacement.(Naudé)
 
 --- Mots clés :
 -	Signature - signature
