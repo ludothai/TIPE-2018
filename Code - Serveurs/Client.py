@@ -18,7 +18,6 @@ class ThreadClientReception(Thread):
             if message_recu=='Deconnexion':
                 Continue=False
         self.connexion_serveur.send(b'Deconnexion')
-        self.connexion_serveur.close()
             
 class ThreadClientEmission(Thread):
     

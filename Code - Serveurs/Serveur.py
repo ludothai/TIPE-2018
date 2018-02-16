@@ -23,7 +23,7 @@ class ThreadServeurClient(Thread):
             else:
                 for client in self.L_connexions:
                     if client != self.connexion_client:
-                        client.send(self.infos_connexion[0]+' : '+message_recu.encode())
+                        client.send((self.infos_connexion[0]+' : '+message_recu).encode())
         
         self.connexion_client.send(b"Deconnexion")
         print("Déconnecté avec le client {}".format(self.infos_connexion))
@@ -53,7 +53,7 @@ except socket.timeout:
     sys.exit()
 print("Connecté avec le client {}".format(infos_connexion))
 L_connexions.append(connexion_client)
-ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
+ThreadServeurClient(connexion_principale,connexion_client,infos_connexion,L_connexions).start()
 
 
 while L_connexions != []:
@@ -63,7 +63,7 @@ while L_connexions != []:
         continue
     print("Connecté avec le client {}".format(infos_connexion))
     L_connexions.append(connexion_client)
-    ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
+    ThreadServeurClient(connexion_principale,connexion_client,infos_connexion,L_connexions).start()
 
 print("Il n'y a plus de clients : Deconnection")
 connexion_principale.close()
