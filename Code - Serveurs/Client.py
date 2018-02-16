@@ -1,5 +1,3 @@
-#Lien : http://www.supinfo.com/articles/single/1232-reseau-python
-
 # Threads
 
 from threading import Thread
@@ -29,14 +27,18 @@ class ThreadClientEmission(Thread):
         
         while True:
             message=input()
-            self.connexion_serveur.send(message.encode())
+            try:
+                self.connexion_serveur.send(message.encode())
+            except:
+                break
+
 
 # Client
 
 import sys
 import socket
 
-hote = "10.162.189.49"
+hote = "localhost"
 port = 12800
 
 connexion_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -52,3 +54,4 @@ thread_emission.start()
 
 thread_reception.join()
 sys.exit()
+

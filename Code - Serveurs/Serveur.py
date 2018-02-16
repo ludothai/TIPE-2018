@@ -6,14 +6,19 @@ from threading import Thread
 
 class ThreadServeurClient(Thread):
     
-    def __init__(self,connexion_principale,connexion_client,infos_connexion,L_connexions):
+    def __init__(self,connexion_principale,connexion_client,L_connexions):
         Thread.__init__(self)
         self.connexion_principale=connexion_principale
         self.connexion_client=connexion_client
         self.L_connexions=L_connexions
-        self.infos_connexion=infos_connexion
+        self.pseudo=''
         
     def run(self):
+
+        self.connexion_client.send('Entrez votre pseudo : '.encode())
+        self.pseudo=self.connexion_client.recv(1024).decode()
+        print( 'Client '+str(self.connexion_client.getsockname())+' alias '+self.pseudo)
+        
         Continue=True
         while Continue :
             message_recu=self.connexion_client.recv(1024).decode()
@@ -23,10 +28,10 @@ class ThreadServeurClient(Thread):
             else:
                 for client in self.L_connexions:
                     if client != self.connexion_client:
-                        client.send((self.infos_connexion[0]+' : '+message_recu).encode())
+                        client.send((self.pseudo+' : '+message_recu).encode())
         
         self.connexion_client.send(b"Deconnexion")
-        print("Déconnecté avec le client {}".format(self.infos_connexion))
+        print("Déconnecté avec le client {}".format(self.pseudo))
         self.connexion_client.close()
                 
 
@@ -41,7 +46,7 @@ port = 12800
 connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connexion_principale.bind((hote, port))
 connexion_principale.listen(5)
-connexion_principale.settimeout(10)
+connexion_principale.settimeout(20)
 print("Le serveur écoute à présent sur le port {}".format(port))
 
 L_connexions=[]
@@ -53,7 +58,7 @@ except socket.timeout:
     sys.exit()
 print("Connecté avec le client {}".format(infos_connexion))
 L_connexions.append(connexion_client)
-ThreadServeurClient(connexion_principale,connexion_client,infos_connexion,L_connexions).start()
+ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
 
 
 while L_connexions != []:
@@ -63,7 +68,7 @@ while L_connexions != []:
         continue
     print("Connecté avec le client {}".format(infos_connexion))
     L_connexions.append(connexion_client)
-    ThreadServeurClient(connexion_principale,connexion_client,infos_connexion,L_connexions).start()
+    ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
 
 print("Il n'y a plus de clients : Deconnection")
 connexion_principale.close()
