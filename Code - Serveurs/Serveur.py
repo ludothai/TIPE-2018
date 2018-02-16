@@ -1,41 +1,38 @@
-#Lien : http://www.supinfo.com/articles/single/1232-reseau-python
+## Serveur
 
 # Threads
 
 from threading import Thread
 
-class ThreadServeurReception(Thread):
+class ThreadServeurClient(Thread):
     
-    def __init__(self,connexion_principale,connexion_client):
+    def __init__(self,connexion_principale,connexion_client,infos_connexion,L_connexions):
         Thread.__init__(self)
         self.connexion_principale=connexion_principale
         self.connexion_client=connexion_client
+        self.L_connexions=L_connexions
+        self.infos_connexion=infos_connexion
         
     def run(self):
         Continue=True
         while Continue :
             message_recu=self.connexion_client.recv(1024).decode()
-            print(message_recu)
             if message_recu=='Deconnexion':
                 Continue=False
+                self.L_connexions.remove(self.connexion_client)
+            else:
+                for client in self.L_connexions:
+                    if client != self.connexion_client:
+                        client.send(self.infos_connexion[0]+' : '+message_recu.encode())
+        
         self.connexion_client.send(b"Deconnexion")
+        print("Déconnecté avec le client {}".format(self.infos_connexion))
         self.connexion_client.close()
-        self.connexion_principale.close()
                 
-class ThreadServeurEmission(Thread):
-    
-    def __init__(self,connexion_client):
-        Thread.__init__(self)
-        self.connexion_client=connexion_client
-    
-    def run(self):
-        while True:
-            message=input()
-            self.connexion_client.send(message.encode())
-
 
 # Serveur
 
+import sys
 import socket
 
 hote=''
@@ -44,16 +41,31 @@ port = 12800
 connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connexion_principale.bind((hote, port))
 connexion_principale.listen(5)
+connexion_principale.settimeout(10)
 print("Le serveur écoute à présent sur le port {}".format(port))
 
-connexion_client, infos_connexion = connexion_principale.accept()
+L_connexions=[]
+try:
+    connexion_client, infos_connexion = connexion_principale.accept()
+except socket.timeout:
+    print("Il n'y a pas de clients : Deconnection")
+    connexion_principale.close()
+    sys.exit()
 print("Connecté avec le client {}".format(infos_connexion))
+L_connexions.append(connexion_client)
+ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
 
-thread_reception=ThreadServeurReception(connexion_principale,connexion_client)
-thread_emission=ThreadServeurEmission(connexion_client)
 
-Continue=True
-thread_reception.start()
-thread_emission.start()
+while L_connexions != []:
+    try:
+        connexion_client, infos_connexion = connexion_principale.accept()
+    except socket.timeout :
+        continue
+    print("Connecté avec le client {}".format(infos_connexion))
+    L_connexions.append(connexion_client)
+    ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
 
-thread_reception.join()
+print("Il n'y a plus de clients : Deconnection")
+connexion_principale.close()
+
+sys.exit()

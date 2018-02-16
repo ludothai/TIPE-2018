@@ -34,9 +34,10 @@ class ThreadClientEmission(Thread):
 
 # Client
 
+import sys
 import socket
 
-hote = "adresse ip à entrer"
+hote = "localhost"
 port = 12800
 
 connexion_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,3 +52,4 @@ thread_reception.start()
 thread_emission.start()
 
 thread_reception.join()
+sys.exit()
