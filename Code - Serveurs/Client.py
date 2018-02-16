@@ -37,7 +37,7 @@ class ThreadClientEmission(Thread):
 import sys
 import socket
 
-hote = "localhost"
+hote = "10.10.60.218"
 port = 12800
 
 connexion_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
