@@ -1,7 +1,7 @@
 #Codage du message 1 caractere = 8 bits
 
 def encodage(m):
-    """Message en STRING retourné en binaire 8 bits (table AISCII) """
+    """Message en STRING retourné en binaire 8 bits (table AISCII)"""
     if type(m) != str :
         raise TypeError
     M = list(m) # on split tout en caracteres individuels

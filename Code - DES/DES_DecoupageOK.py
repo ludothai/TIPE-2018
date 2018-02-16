@@ -25,4 +25,4 @@ def assembler(B):
     L = [] #résultat
     for i in range(len(B)):
         R+=B[i]
-    return L
+    return 
