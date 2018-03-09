@@ -1,3 +1,4 @@
+# 1 Permutation initiale
 def permutation_initiale(L):
     """Permute les élements de L selon l'ordre de permutation défini par PI"""
     PI=[58,50,42,34,26,18,10, 2,
@@ -10,3 +11,7 @@ def permutation_initiale(L):
         63,55,47,39,31,23,15, 7] #Liste de permutation initiale
     L=[L[i-1] for i in PI]
     return L
+
+def scindement(L):
+    """Retourne le scindement de L en 2 listes G0 et D0 de de 32 bits"""
+    return L[0:32], L[33:64]
