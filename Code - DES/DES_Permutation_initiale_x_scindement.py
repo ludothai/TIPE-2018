@@ -12,6 +12,6 @@ def permutation_initiale(L):
     L=[L[i-1] for i in PI]
     return L
 
-def scindement(L):
+def scindement2(L):
     """Retourne le scindement de L en 2 listes G0 et D0 de de 32 bits"""
-    return L[0:32], L[33:64]
+    return L[0:32], L[32:64]

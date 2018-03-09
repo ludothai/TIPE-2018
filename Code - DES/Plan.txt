@@ -15,5 +15,8 @@ I.2 - Découpage en bloc de 64 bits - DES_Decoupage.py
 II. Permutation initiale des blocs:
 DES_Permutation_initiale_x_scindement.py
 
-III. Découpage des blocs en 2 parties: 
+III. Découpage des blocs en 2 parties:
 DES_Permutation_initiale_x_scindement.py
+
+VI. Etape de permutation et subsitution:
+VI.1 - 
