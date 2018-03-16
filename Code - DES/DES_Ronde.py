@@ -116,8 +116,18 @@ def selection8(D08):
     return S8[ligne][colonne]
 
 def somme(D01, D02, D03, D04, D05, D06, D07, D08):
-    """Rassemble les valeurs obtenues, créer la table de 32 bits"""
+    """Rassemble les valeurs obtenues, créé la table de 32 bits"""
     Valeurs = [selection1(D01), selection2(D02), selection3(D03), selection4(D04), selection5(D05), selection6(D06), selection7(D07), selection8(D08)]
+    ValeursBIN = [bin(Valeurs[i])[2:] for i in range(8)]  #converti les valeurs décimals en binaire
+    ValeursFIN = []
+    # On complète avec des 0 pour former des nombres codés sur 4 bits :
+    for i in range(8):
+        n = len(ValeursBIN[i])
+        if n > 4:
+            return 'Erreur len(valeur)'
+        else:
+            for i in range(4-n):
+
 
 
 
