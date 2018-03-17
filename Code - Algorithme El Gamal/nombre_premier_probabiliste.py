@@ -3,10 +3,15 @@ import time
 
 # Génération d'un nombre premier basée su le test de primalité de Miller-Rabin
 
-def MillerRabin_génération(n): #longueur en base 10 du nombre premier
-    k=0 #candidat premier
-    for i in range(n):
-        k+=rd.randint(0,9)*10**i
+def MillerRabin_génération(b): #longueur en base 10 du nombre premier (proba pas premier 10**-30)
+    while True:
+        n=rd.choice([1,3,5,7,9]) #candidat premier
+        for k in range(1,b-1) :
+            n+=rd.randint(0,9)*10**k
+        n+=rd.randint(1,9)*10**b
+        if MillerRabin_test(n,100):
+            return n
+
 
 def puissmod(a,d,n): # récursif
 
@@ -21,7 +26,7 @@ def puissmod(a,d,n): # récursif
         b=(a**2)
         return a*puissmod(b,d//2,n)%n
     
-def puissmod2(a,d,n): #itératif : beaucoup plus efficace (10^-5)
+def puissmod2(a,d,n): #itératif : beaucoup plus efficace (10^-5) 600 chiffres -> 0.024571632396359178 s
     dbin=bin(d)
     L=[int(dbin[-i-1]) for i in range(len(dbin)-2)]
     res=1
@@ -66,16 +71,16 @@ def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
             return False
     return True
 
-def test(i):
-    n=rd.choice([1,3,5,7,9])
-    for k in range(1,i) :
-        n+=rd.randint(0,9)*10**k
-    a=rd.randint(0,n)
-    d=rd.randint(0,n)
-    print(a,d,n)
-    t1=time.clock()
-    puissmod(a,d,n)
-    t2=time.clock()
-    puissmod2(a,d,n)
-    t3=time.clock()
-    print(t2-t1,t3-t2)
+def test(i,j):
+    for b in range(i,j+1):
+        n=rd.choice([1,3,5,7,9])
+        for k in range(1,b) :
+            n+=rd.randint(0,9)*10**k
+        n+=rd.randint(1,9)*10**b
+        a=rd.randint(0,n)
+        d=rd.randint(0,n)
+        t1=time.clock()
+        puissmod2(a,d,n)
+        t2=time.clock()
+        
+        print(b,t2-t1)
