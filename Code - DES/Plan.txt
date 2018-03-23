@@ -18,5 +18,5 @@ DES_Permutation_initiale_x_scindement.py
 III. Découpage des blocs en 2 parties:
 DES_Permutation_initiale_x_scindement.py
 
-VI. Etape de permutation et subsitution:
-VI.1 - 
+VI. Etape de permutation et substiution:
+VI.1 -

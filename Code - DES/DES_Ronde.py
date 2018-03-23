@@ -154,13 +154,21 @@ def somme(D01, D02, D03, D04, D05, D06, D07, D08):
     print("len(table32) = ", len(table32))
     return table32
 
-    def permutation_32(L):
+def permutation32(L):
+    P = [16, 7,	20,	21,	29,	12,	28,	17,
+          1,15,	23,	26,	5,	18,	31,	10,
+          2, 8,	24,	14,	32,	27,	 3,	 9,
+         19,13,	30,	 6,	22,	11,	 4,	25,]
+    L = [L[i-1] for i in P]
+    return L
+
 
 
 
 ##############
-
-print(somme(D01, D02, D03, D04, D05, D06, D07, D08))
+S = somme(D01, D02, D03, D04, D05, D06, D07, D08)
+print("S = ", S)
+print("S permute = ", permutation32(S) )
 
 ##############
 
