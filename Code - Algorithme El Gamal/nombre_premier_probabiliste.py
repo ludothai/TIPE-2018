@@ -1,16 +1,20 @@
 import random as rd
-import time
+from time import perf_counter
+import matplotlib.pyplot as plt
+import math
 
 # Génération d'un nombre premier basée su le test de primalité de Miller-Rabin
 
 def MillerRabin_génération(b): #longueur en base 10 du nombre premier (proba pas premier 10**-30)
+    i=0
     while True:
+        i+=1
         n=rd.choice([1,3,5,7,9]) #candidat premier
         for k in range(1,b-1) :
             n+=rd.randint(0,9)*10**k
         n+=rd.randint(1,9)*10**b
         if MillerRabin_test(n,100):
-            return n
+            return i,n
 
 
 def puissmod(a,d,n): # récursif
@@ -71,16 +75,27 @@ def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
             return False
     return True
 
-def test(i,j):
+def test(i,j,pas):
+    X=[]
+    Y=[]
+    for b in range(i,j+1,pas):
+        print(b)
+        t1=perf_counter()
+        MillerRabin_génération(b)
+        t2=perf_counter()
+        X.append(b)
+        Y.append((t2-t1))
+    plt.plot(X,Y)
+    plt.show()
+    
+def conj_riemann(i,j):
+    X=[]
+    Y=[]
     for b in range(i,j+1):
-        n=rd.choice([1,3,5,7,9])
-        for k in range(1,b) :
-            n+=rd.randint(0,9)*10**k
-        n+=rd.randint(1,9)*10**b
-        a=rd.randint(0,n)
-        d=rd.randint(0,n)
-        t1=time.clock()
-        puissmod2(a,d,n)
-        t2=time.clock()
-        
-        print(b,t2-t1)
+        a=1/math.log(10**(b+1))-1/math.log(10**(b))
+        X.append(b)
+        Y.append(a)
+        print(b,a)
+    plt.plot(X,Y)
+    plt.show()
+
