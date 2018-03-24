@@ -32,7 +32,7 @@ def XORL(Dprime,K):
     return D0
 
 def scindement6(D0):
-    """Scide le bloc de 48 en 8 blocs de 6"""
+    """Scinde le bloc de 48 en 8 blocs de 6"""
     return D0[0:6], D0[6:12], D0[12:18], D0[18:24], D0[24:30], D0[30:36], D0[36:42], D0[42:48]
 
 def selection1(D01):
@@ -115,21 +115,62 @@ def selection8(D08):
     colonne = int(str(D08[1]*1000 + D08[2]*100 + D08[3]*10 + D08[4]), 2)
     return S8[ligne][colonne]
 
+D01 = [0,0,0,0,0,0]
+D02 = [0,0,0,0,0,0]
+D03 = [0,0,0,0,0,0]
+D04 = [0,0,0,0,0,0]
+D05 = [0,0,0,0,0,0]
+D06 = [0,0,0,0,0,0]
+D07 = [0,0,0,0,0,0]
+D08 = [0,0,0,0,0,0]
+
+def quatre(chaine):
+    """ transforme un nombre (en str) en liste contenant chaque chiffre en int ET normalise en liste de 4 éléments avec des 0 devants"""
+    L = []
+    for i in chaine:
+        L.append(int(i))
+    n = len(L)
+    if n > 4:
+        return 'Erreur longueur liste'
+    else:
+        for i in range(4-n):
+            L.insert(0, int(0))
+    return L
+
 def somme(D01, D02, D03, D04, D05, D06, D07, D08):
     """Rassemble les valeurs obtenues, créé la table de 32 bits"""
     Valeurs = [selection1(D01), selection2(D02), selection3(D03), selection4(D04), selection5(D05), selection6(D06), selection7(D07), selection8(D08)]
-    ValeursBIN = [bin(Valeurs[i])[2:] for i in range(8)]  #converti les valeurs décimals en binaire
-    ValeursFIN = []
-    # On complète avec des 0 pour former des nombres codés sur 4 bits :
+    print("Valeurs =", Valeurs)
+    ValeursBIN = [bin(Valeurs[i])[2:] for i in range(8)]
+    print("ValeursBIN =", ValeursBIN) #converti les valeurs décimales en binaires
+    ValeursBINlist =[]
     for i in range(8):
-        n = len(ValeursBIN[i])
-        if n > 4:
-            return 'Erreur len(valeur)'
-        else:
-            for i in range(4-n):
+        ValeursBINlist.append(quatre(ValeursBIN[i]))
+    print("ValeursBINlist =", ValeursBINlist)
+    table32 = []
+    for i in range(8):
+        table32 = table32 + ValeursBINlist[i]
+    print("table32 = ", table32)
+    print("len(table32) = ", len(table32))
+    return table32
+
+def permutation32(L):
+    P = [16, 7,	20,	21,	29,	12,	28,	17,
+          1,15,	23,	26,	5,	18,	31,	10,
+          2, 8,	24,	14,	32,	27,	 3,	 9,
+         19,13,	30,	 6,	22,	11,	 4,	25,]
+    L = [L[i-1] for i in P]
+    return L
 
 
 
+
+##############
+S = somme(D01, D02, D03, D04, D05, D06, D07, D08)
+print("S = ", S)
+print("S permute = ", permutation32(S) )
+
+##############
 
 def Ronde(G,D,K):
     ED=[D[i] for i in E]
