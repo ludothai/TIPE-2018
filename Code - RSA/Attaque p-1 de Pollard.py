@@ -2,7 +2,7 @@
 
 from fractions import gcd
 
-def pollard(n, B):
+def Pollard(n, B):
     a = 2
     for i in range(2, B+1):
         a = (a**i) % n
