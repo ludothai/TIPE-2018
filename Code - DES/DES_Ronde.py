@@ -163,12 +163,10 @@ def permutation32(L):
     return L
 
 
-
-
 ##############
 S = somme(D01, D02, D03, D04, D05, D06, D07, D08)
 print("S = ", S)
-print("S permute = ", permutation32(S) )
+print("S permute =", permutation32(S) )
 
 ##############
 
