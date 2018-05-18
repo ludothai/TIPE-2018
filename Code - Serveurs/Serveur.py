@@ -5,20 +5,20 @@
 from threading import Thread
 
 class ThreadServeurClient(Thread):
-    
+
     def __init__(self,connexion_principale,connexion_client,L_connexions):
         Thread.__init__(self)
         self.connexion_principale=connexion_principale
         self.connexion_client=connexion_client
         self.L_connexions=L_connexions
         self.pseudo=''
-        
+
     def run(self):
 
         self.connexion_client.send('Entrez votre pseudo : '.encode())
         self.pseudo=self.connexion_client.recv(1024).decode()
         print( 'Client '+str(self.connexion_client.getsockname())+' alias '+self.pseudo)
-        
+
         Continue=True
         while Continue :
             message_recu=self.connexion_client.recv(1024).decode()
@@ -29,11 +29,11 @@ class ThreadServeurClient(Thread):
                 for client in self.L_connexions:
                     if client != self.connexion_client:
                         client.send((self.pseudo+' : '+message_recu).encode())
-        
+
         self.connexion_client.send(b"Deconnexion")
-        print("Déconnecté avec le client {}".format(self.pseudo))
+        print("Deconnecté avec le client {}".format(self.pseudo))
         self.connexion_client.close()
-                
+
 
 # Serveur
 
