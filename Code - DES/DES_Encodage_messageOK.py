@@ -22,6 +22,7 @@ def encodage(m):
     print("M=",M)
     print("Mord=",Mord)
     print("Mbin=",Mbin)
+    print("Mfin=",Mfin)
     return Mfin
 
 def decodage(M):

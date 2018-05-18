@@ -11,15 +11,16 @@ def permutationCP1(K):
             K1.append(K[i-1])
         return K1[:28], K1[28:]
 
-def rotationGauche(L):
-    """ Rotation à gauche de L:  les bits en seconde position prennent la première position, ceux en troisième position la seconde, ...
-Les bits en première position passent en dernière position."""
-    n = len(L)
-    L.append(L[0])
-    L.pop(0)
-    return L
-
-def regroup(G,D):
+def decalageGauche(L, n):
+    """ Decale les elements de la liste L de n places vers la GAUCHE"""
+    Ldec = []
+    for i in range(len(L)-n):
+        Ldec.append(L[i+n])
+    for i in range(n):
+        Ldec.append(L[i])
+    return Ldec
+        
+def regroupe(G,D):
     return G+D
 
 def permutationCP2(K):
@@ -35,14 +36,65 @@ def permutationCP2(K):
             Ki.append(K[i-1])
         return Ki
 
-def genKey(L):
+def genKey(K):
+    """ Retourne les 16 cles Ki a partir de la cle de 64 bits"""
+    decalage = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1] #Nombre de decalage a gauche pour les 16 iterations (de 0 a 15)
+    cles = []
+    #verification cle est de 64 bits:
+    if checkBINn(K, 64) == False: return print("Erreur sur la cle initilale K")
+    # permutation initiale CP1:
+    G, D = permutationCP1(K)
+    print("G=", G)
+    print("D=", D)
+    print("")
+    if checkBINn(G, 28) == False: return print("Erreur sur la cle initiale G")
+    if checkBINn(D, 28) == False: return print("Erreur sur la cle initiale D")
+    for i in range(16):
+        Gi = decalageGauche(G, decalage[i])
+        Di = decalageGauche(D, decalage[i])
+        print("G",i,"=",Gi)
+        print("D",i,"=",Di)
+        Ki = permutationCP2(regroupe(Gi, Di))
+        print("K",i,"=",Ki)
+        print()
+        if checkBINn(Ki, 48) == False: return print("Erreur sur la cle Ki")
+        cles.append(Ki)
+        G = Gi
+        D = Di
+        
+    return cles
+        
+def checkBINn(L, n):
+    """ verifie que la liste L est une liste contenant n elements binaire (0 ou 1)"""
+    binaire = [0,1]
+    if len(L)==n:
+        for i in range(len(L)):
+            if L[i] not in binaire:
+                return False
+        return True
+    else: 
+        return False    
 
 
 def gen(n):
     return ([(i+1)*10 for i in range(n)])
 
-K = gen(64)
 
-print(K)
-print(permutationCP1(K))
-print(rotationGauche(K))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
