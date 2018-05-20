@@ -1,0 +1,3 @@
+-Hash a partir de DES
+-Calcul de puissances modulaires négatives ou inverse modulaire
+
