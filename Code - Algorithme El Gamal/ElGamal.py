@@ -21,13 +21,13 @@ def inversmod(a,p):
     while r2!=0:
         q=r1//r2
         r1,u1,v1,r2,u2,v2=r2,u2,v2,r1-q*r2,u1-q*u2,v1-q*v2
-        print(r1,u1,v1,r2,u2,v2)
     if r1!=1:
         return 'pas inversible'
     else:
         return u1
 
 
+#Fonctions de ElGamal
 
 def generation_cle(p,g):
     '''p premier,g générateur'''
@@ -56,7 +56,11 @@ def chiffrement(p,g,cle_dest,message_clair,signature=True):
 def verification_signature(p,g,r,s,entete,message_crypt):
     h=hachage(message_crypt)
     a=puissmod(g,h,p)
-    b=
+    b=(puissmod(entete,r,p)*puissmod(r,s,p))%p
+    if a==b:
+        return True
+    else:
+        return False
 
 
 def dechiffrement(p,g,cle_priv,entete,message_crypt):
