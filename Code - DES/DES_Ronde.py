@@ -1,4 +1,14 @@
-
+def checkBINn(L, n):
+    """ verifie que la liste L est une liste contenant n elements binaire (0 ou 1)"""
+    binaire = [0,1]
+    if len(L)==n:
+        for i in range(len(L)):
+            if L[i] not in binaire:
+                return False
+        return True
+    else: 
+        return False 
+    
 def expansion(D):
     """Etend les 32 bits du bloc DO en 48 bits dans Dprime"""
     E=[32, 1, 2, 3, 4, 5,
@@ -27,13 +37,13 @@ def XOR(b1,b2):
 def XORL(Dprime,K):
     """Ou exclusif entre Dprime et clé K (48 bits)"""
     D0 = []
-    for i in range(48):
-        D.append(XOR(Dprime[i], K[i]))
+    for i in range(len(Dprime)):
+        D0.append(XOR(Dprime[i], K[i]))
     return D0
 
-def scindement6(D0):
+def scindement8(D0):
     """Scinde le bloc de 48 en 8 blocs de 6"""
-    return D0[0:6], D0[6:12], D0[12:18], D0[18:24], D0[24:30], D0[30:36], D0[36:42], D0[42:48]
+    return [D0[0:6], D0[6:12], D0[12:18], D0[18:24], D0[24:30], D0[30:36], D0[36:42], D0[42:48]]
 
 def selection1(D01):
     """Sélection pour D01"""
@@ -153,22 +163,37 @@ def somme(D01, D02, D03, D04, D05, D06, D07, D08):
     print("table32 = ", table32)
     print("len(table32) = ", len(table32))
     return table32
+
+def selection(D0):
+    """Etape de selection d'une liste D0 de 48 bits en une liste de 32 bits"""
+    #vérification 
+    if checkBINn(D0, 48) == False : return "Erreur LO"
+    #scindement :
+    D0i = scindement8(D0)
+    return somme(D0i[0], D0i[1], D0i[2], D0i[3], D0i[4], D0i[5], D0i[6], D0i[7])
+
 def permutation32(L):
     P = [16, 7,	20,	21,	29,	12,	28,	17,
           1,15,	23,	26,	5,	18,	31,	10,
           2, 8,	24,	14,	32,	27,	 3,	 9,
          19,13,	30,	 6,	22,	11,	 4,	25,]
-    L = [L[i-1] for i in P]
-    return L
+    Q = [L[i-1] for i in P]
+    return Q
 
 
 ##############
-S = somme(D01, D02, D03, D04, D05, D06, D07, D08)
-print("S = ", S)
-print("S permute =", permutation32(S) )
+#S = somme(D01, D02, D03, D04, D05, D06, D07, D08)
+#print("S = ", S)
+#print("S permute =", permutation32(S) )
+
+##############
+#D0 = [0 for i in range(48)]
+#print("D0=", D0)
+#print()
+#print("lenD0=", len(D0))
+#print("scindement=",scindement8(D0))
+#print("selection=",selection(D0))
+#print("len(selection)=",len(selection(D0)))
 
 ##############
 
-def Ronde(G,D,K):
-    ED=[D[i] for i in E]
-    Dprim=[XOR(D[i],K[i]) for i in range(48)]
