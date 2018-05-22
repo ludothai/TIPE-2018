@@ -54,5 +54,7 @@ def shanks(p,g,x): #retourne n tel que x=g**n mod p
 #p,g,x=457,13,255
 #print(p,g,x,shanks(p,g,x))
 
+#Calcule de l'indice (Complexe)
+
 
 
