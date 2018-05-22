@@ -106,6 +106,27 @@ def test_generateur(n):
         print(k)
         p=k*q+1
         if MillerRabin_test(p,100):
-            return p,q,k
+            while True:
+                g=rd.randint(2,p) #Candidat générateur
+                i=1
+                grandordre=True
+                while grandordre:
+                    if puissmod2(g,i,p)==1:
+                        grandordre=False
+                    elif i<k:
+                        i+=1
+                    else:
+                        return p,g
+n=4
+p,g=test_generateur(n)
+print(p,g)
 
-print(test_generateur(100))
+print('ssgpe engendré par le générateur')
+L=[]
+for i in range(1,p):
+    k=puissmod2(g,i,p)
+    if k not in L:
+        L.append(k)
+L.sort()
+print('ordre : ',len(L))
+
