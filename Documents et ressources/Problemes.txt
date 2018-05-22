@@ -1,3 +1,9 @@
--Hash a partir de DES
--Fabriquer un générateur de (Z/pZ)*
+-Hash a partir de DES (Thai)
+-finir DES (Thai)
+-Fabriquer un générateur de (Z/pZ)* (Naudé)
+-DOT
+-Abstract (Besson)
+-finir signature ElGamal (Besson)
+-continuer RSA (Besson)
+-Attaques ElGamal (Besson)
 
