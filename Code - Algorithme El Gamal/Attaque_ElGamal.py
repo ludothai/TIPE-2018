@@ -31,26 +31,28 @@ def inversmod(a,p):
 #O(exp(p))
 def shanks(p,g,x): #retourne n tel que x=g**n mod p
     K=int(sqrt(p))+1
-    A=[(puissmod(g,i,p),i) for i in range(K)]
+    A=[(puissmod(g,i,p),i) for i in range(1,K)]
     A.sort(key=lambda x:x[0])
-    for j in range(K):
-        b=(x*inversmod(puissmod(g,K*j,p))%p
-#        if b<int(p/2): #On parcours A dans l'ordre croissant
-        k=0
-        while A[k][0]>b and k<K-1:
-            k+=1
-        if A[k][0]==b:
-            return A[k][1]+K*j
-#        else: #On parcours A dans l'ordre décroissant
-#            i=K-1
-#            while A[i][0]<b and i>0:
-#                i-=1
-#            if A[i][0]==b:
-#               return A[i][1]+K*j
+    print(A)
+    for j in range(1,K):
+        b=(x*inversmod(puissmod(g,K*j,p),p))%p
+        print(b)
+        if b<int(p/2): #On parcours A dans l'ordre croissant
+            i=0
+            while i<K-2 and b>A[i][0]:
+                i+=1
+            if A[i][0]==b:
+                return A[i][1]+K*j
+        else: #On parcours A dans l'ordre décroissant
+            i=K-2
+            while i>0 and b<A[i][0]:
+                i-=1
+            if A[i][0]==b:
+               return A[i][1]+K*j
 
 
-p,g,x=457,13,255
-print(p,g,x,shanks(p,g,x))
+#p,g,x=457,13,255
+#print(p,g,x,shanks(p,g,x))
 
 
 
