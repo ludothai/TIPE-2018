@@ -101,12 +101,24 @@ def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
             return False
     return True
 
+def MillerRabin_proba(i,j,pas):
+    for k in range(i,j,pas):
+        X=[]
+        for s in range(100):
+            n=rd.choice([1,3,5,7,9]) #candidat premier
+            for k in range(1,b-1) :
+                n+=rd.randint(0,9)*10**k
+            n+=rd.randint(1,9)*10**b
+            t1=perf_counter()
+            MillerRabin_test(n,k)
+            t2=perf_counter()
+        print(k,sum(X)/100,1/(4**k),sep=';')
+            
+    
 
-def test_generateur(n):
+def generateur(n):
     q=MillerRabin_generation(n)[1]
-    print(q)
-    for k in range(1,100):
-        print(k)
+    for k in range(1,10000):
         p=k*q+1
         if MillerRabin_test(p,100):
             while True:
@@ -119,17 +131,32 @@ def test_generateur(n):
                     elif i<k:
                         i+=1
                     else:
-                        return p,g
-n=4
-p,g=test_generateur(n)
-print(p,g)
+                        return k,p,g
 
-print('ssgpe engendré par le générateur')
-L=[]
-for i in range(1,p):
-    k=puissmod2(g,i,p)
-    if k not in L:
-        L.append(k)
-L.sort()
-print('ordre : ',len(L))
+def test_generateur(i,j,pas):
+    for n in range(i,j,pas):
+        X=[]
+        T=[]
+        for s in range(100):
+            t1=perf_counter()
+            x=generateur(n)[0]
+            t2=perf_counter()
+            X.append(x)
+            T.append(t2-t1)
+        print(n,min(X),max(X),sum(X)/100,min(T),max(T),sum(T)/100,sep=';')
+    
+
+
+# n=4
+# p,g=test_generateur(n)
+# print(p,g)
+# 
+# print('ssgpe engendré par le générateur')
+# L=[]
+# for i in range(1,p):
+#     k=puissmod2(g,i,p)
+#     if k not in L:
+#         L.append(k)
+# L.sort()
+# print('ordre : ',len(L))
 
