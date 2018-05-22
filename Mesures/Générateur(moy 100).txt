@@ -1,0 +1,1 @@
+n;kmin;kmax;kmoy;tmin;tmax;tmoy
