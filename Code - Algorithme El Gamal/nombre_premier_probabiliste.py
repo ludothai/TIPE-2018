@@ -5,7 +5,7 @@ import math
 
 # Génération d'un nombre premier basée su le test de primalité de Miller-Rabin
 
-def MillerRabin_génération(b): #longueur en base 10 du nombre premier (proba pas premier 10**-30)
+def MillerRabin_generation(b): #longueur en base 10 du nombre premier (proba pas premier 10**-30)
     i=0
     while True:
         i+=1
@@ -29,7 +29,7 @@ def puissmod(a,d,n): # récursif
     else:
         b=(a**2)
         return a*puissmod(b,d//2,n)%n
-    
+
 def puissmod2(a,d,n): #itératif : beaucoup plus efficace (10^-5) 600 chiffres -> 0.024571632396359178 s
     dbin=bin(d)
     L=[int(dbin[-i-1]) for i in range(len(dbin)-2)]
@@ -50,25 +50,25 @@ def MillerRabin_temoin(a,n):
     while d%2==0:
         d=d//2
         s+=1
-    
+
     #Premier test
     x=puissmod2(a,d,n)
     if x==1 or x==n-1 :
         return False
-    
+
     #Boucle principale
-    
+
     while s>1:
         x=x**2%n
         if x==n-1:
             return False
         s-=1
-    
+
     return True
-    
+
 
 def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
-    
+
     for t in range(k):
         a=rd.randint(2,n-2)
         if MillerRabin_temoin(a,n):
@@ -87,7 +87,7 @@ def test(i,j,pas):
         Y.append((t2-t1))
     plt.plot(X,Y)
     plt.show()
-    
+
 def conj_riemann(i,j):
     X=[]
     Y=[]
@@ -99,3 +99,13 @@ def conj_riemann(i,j):
     plt.plot(X,Y)
     plt.show()
 
+def test_generateur(n):
+    q=MillerRabin_generation(n)[1]
+    print(q)
+    for k in range(1,100):
+        print(k)
+        p=k*q+1
+        if MillerRabin_test(p,100):
+            return p,q,k
+
+print(test_generateur(100))

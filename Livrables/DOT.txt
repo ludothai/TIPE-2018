@@ -1,0 +1,18 @@
+Ce déroulé opérationnel permet de mettre en valeur de façon synthétique les Étapes ou Séquences-clé (E/S) de votre TIPE. Cela permettra aux examinateurs de comprendre un certain nombre d’aspects pas nécessairement mentionnés dans la présentation orale. Il serait utile que certains éléments de ce DOT puissent être mis en rapport avec les objectifs annoncés dans la MCOT.
+ Ce DOT est un ensemble de 4 à 8 E/S (y compris si nécessaire les difficultés rencontrées, surmontées ou non) du déroulement du TIPE témoignant de sa progression (quatre E/S minimum). Chacune de ces E/S sera décrite en au plus 50 mots et saisis en ligne via l’interface SCEI.
+ Le DOT ne doit pas être analogue à un plan, ni fournir des résultats ou des interprétations, il doit rester avant tout factuel.
+
+-Rencontre avec Madame Sihem Mesnager, chercheuse en cryptographie, qui nous a orienté vers des méthodes concrètes pour la mise en place du cryptosystème.
+
+-Problème pour trouver une méthode de fabrication d'un grand nombre premier et d'un générateur du groupe cyclique ((Z/pZ)*,x) efficaces d'où l'obligation de passer d'algorithmes déterministes à des algorithmes probabilistes.
+
+-Complication pour implémenter l'algorithme de chiffrement DES du fait de sa longueur et de sa complexité.
+
+-Achat et mise en place des micro ordinateurs sur un réseau pour permettre la conversation des deux machines.
+
+-Début des essais a grande échelle (grands nombres premiers, attaques et conversation) dans le but de comparer les différents cryptosystèmes (sécurité, temps de calcul et applications associées).
+
+-Découverte de faiblesses du cryptosystèmes dans des cas particulier qui pourraient survenir lors de bugs et travail sur des méthodes d'exploitation de ces faiblesses.
+
+-Optimisation de l'exponentiation modulaire qui est le calcul le plus fréquent dans les algorithmes.
+

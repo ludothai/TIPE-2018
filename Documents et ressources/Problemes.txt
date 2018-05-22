@@ -1,7 +1,6 @@
 -Hash a partir de DES (Thai)
 -finir DES (Thai)
 -Fabriquer un générateur de (Z/pZ)* (Naudé)
--DOT
 -Abstract (Besson)
 -continuer RSA (Besson)
 -Attaques ElGamal : une de faite, l'autre très complexe (Besson)
