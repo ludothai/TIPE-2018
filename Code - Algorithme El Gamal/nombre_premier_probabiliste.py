@@ -75,29 +75,6 @@ def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
             return False
     return True
 
-def test(i,j,pas):
-    X=[]
-    Y=[]
-    for b in range(i,j+1,pas):
-        print(b)
-        t1=perf_counter()
-        MillerRabin_génération(b)
-        t2=perf_counter()
-        X.append(b)
-        Y.append((t2-t1))
-    plt.plot(X,Y)
-    plt.show()
-
-def conj_riemann(i,j):
-    X=[]
-    Y=[]
-    for b in range(i,j+1):
-        a=1/math.log(10**(b+1))-1/math.log(10**(b))
-        X.append(b)
-        Y.append(a)
-        print(b,a)
-    plt.plot(X,Y)
-    plt.show()
 
 def test_generateur(n):
     q=MillerRabin_generation(n)[1]
