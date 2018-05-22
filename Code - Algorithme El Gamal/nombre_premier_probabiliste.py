@@ -41,7 +41,33 @@ def puissmod2(a,d,n): #itératif : beaucoup plus efficace (10^-5) 600 chiffres -
         a=a**2%n
     return res
 
-
+def test_puissmod(i,j,pas): #moyenne sur 100
+    print('n;t1;t2')
+    for i in range(i,j,pas):
+        X1=[]
+        X2=[]
+        for s in range(100):
+            a=0
+            d=0
+            n=0
+            for k in range(i) :
+                a+=rd.randint(0,9)*10**k
+                d+=rd.randint(0,9)*10**k
+                n+=rd.randint(0,9)*10**k
+            t1=perf_counter()
+            puissmod(a,d,n)
+            t2=perf_counter()
+            puissmod2(a,d,n)
+            t3=perf_counter()
+            X1.append(t2-t1)
+            X2.append(t3-t2)
+        print(i,sum(X1)/100,sum(X2)/100,sep=';')
+        
+        
+        
+        
+        
+    
 
 def MillerRabin_temoin(a,n):
     #Calcul de s et d tels que n-1=2**s*d
