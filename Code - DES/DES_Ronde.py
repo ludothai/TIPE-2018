@@ -10,7 +10,7 @@ def checkBINn(L, n):
         return False 
     
 def expansion(D):
-    """Etend les 32 bits du bloc DO en 48 bits dans Dprime"""
+    """Etend les 32 bits du bloc DO en 48 bits dans Q"""
     E=[32, 1, 2, 3, 4, 5,
         4, 5, 6, 7, 8, 9,
         8, 9,10,11,12,13,
@@ -19,8 +19,9 @@ def expansion(D):
        20,21,22,23,24,25,
        24,25,26,27,28,29,
        28,29,30,31,32, 1]
-    Dprime = [D[i-1] for i in E]
-    return Dprime
+    Q = [D[i-1] for i in E]
+    print("expansion: ",Q)
+    return Q
 
 def XOR(b1,b2):
     """OU exclusif entre 2 bits b1 et b2"""
@@ -149,7 +150,9 @@ def quatre(chaine):
 
 def somme(D01, D02, D03, D04, D05, D06, D07, D08):
     """Rassemble les valeurs obtenues, créé la table de 32 bits"""
+    print("Bloc de 6: ",D01, D02, D03, D04, D05, D06, D07, D08)
     Valeurs = [selection1(D01), selection2(D02), selection3(D03), selection4(D04), selection5(D05), selection6(D06), selection7(D07), selection8(D08)]
+    print()
     print("Valeurs =", Valeurs)
     ValeursBIN = [bin(Valeurs[i])[2:] for i in range(8)]
     print("ValeursBIN =", ValeursBIN) #converti les valeurs décimales en binaires
@@ -160,6 +163,7 @@ def somme(D01, D02, D03, D04, D05, D06, D07, D08):
     table32 = []
     for i in range(8):
         table32 = table32 + ValeursBINlist[i]
+    print()
     print("table32 = ", table32)
     print("len(table32) = ", len(table32))
     return table32
@@ -173,11 +177,12 @@ def selection(D0):
     return somme(D0i[0], D0i[1], D0i[2], D0i[3], D0i[4], D0i[5], D0i[6], D0i[7])
 
 def permutation32(L):
-    P = [16, 7,	20,	21,	29,	12,	28,	17,
-          1,15,	23,	26,	5,	18,	31,	10,
-          2, 8,	24,	14,	32,	27,	 3,	 9,
-         19,13,	30,	 6,	22,	11,	 4,	25,]
+    P = [16, 7,20,21,29,12,28,17,
+          1,15,23,26, 5,18,31,10,
+          2, 8,24,14,32,27, 3, 9,
+         19,13,30, 6,22,11, 4,25,]
     Q = [L[i-1] for i in P]
+    print("permutation 32 :", Q)
     return Q
 
 

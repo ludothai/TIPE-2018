@@ -1,65 +1,145 @@
-# -*- coding: utf-8 -*-
+#K = [0 for i in range(64)]
 
-K = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,0, 1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0]
-#K = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
-key = genKey(K)
+K = [0,0,0,1,0,0,1,1, 0,0,1,1,0,1,0,0, 0,1,0,1,0,1,1,1, 0,1,1,1,1,0,0,1, 1,0,0,1,1,0,1,1, 1,0,1,1,1,1,0,0, 1,1,0,1,1,1,1,1, 1,1,1,1,0,0,0,1] 
 
-m = "hello"
-M = encodage(m)
 
-M64 = decoupe64(M) 
-print("M64=", M64)
+M = [0,0,0,0, 0,0,0,1, 0,0,1,0, 0,0,1,1, 0,1,0,0, 0,1,0,1, 0,1,1,0, 0,1,1,1, 1,0,0,0, 1,0,0,1, 1,0,1,0, 1,0,1,1, 1,1,0,0, 1,1,0,1, 1,1,1,0, 1,1,1,1]
 
-M0 = M64[0]
+L= decoupe64(encodage("loooool"))[0]
 
-print("M0=", M0)
-print()
-# on travaille avec M0 liste de 64 bits
-
-#permutation initiale
-Mpermini = permutation_initiale(M0)
-print("Mpermini=", Mpermini)
-print()
-
-#scindement
-G,D =  scindement2(Mpermini)
-print("G=", G)
-print("D=", D)
-print()
-
-GD = []
-
-Gi = G
-Di = D 
-GD.append([Gi, Di])
-
-print("i= -1")
-print()
-print("G -1 =", Gi)
-print("D -1 =", Di)
-print()
-print()
-
-#ronde
-for i in range(16):
-    print("i=", i)
-    Dexpand= expansion(Di)
-    X = XORL(Dexpand, key[i])
-    Si = selection(X)
-    Ti = permutation32(Si)
-    Di = XORL(Gi, Ti)
-    Gi = Di
-    print()
-    print("G",i,"=", Gi)
-    print("D",i,"=", Di)
-    GD.append([Gi,Di])
-    print()
-    print()
+def checkBINn(L, n):
+    """ verifie que la liste L est une liste contenant n elements binaire (0 ou 1)"""
+    binaire = [0,1]
+    if len(L)==n:
+        for i in range(len(L)):
+            if L[i] not in binaire:
+                return False
+        return True
+    else: 
+        return False 
     
-#regroupement 
-R = Gi + Di 
+def DESc(M, K):
+    """ Crypte le message M (binaire de 64 bits) avec la clé K (binaire de 64 bits) par la methode du DES"""
+    #Verification
+    if checkBINn(M, 64) == False: return 'Erreur M'
+    if checkBINn(K, 64) == False: return 'Erreur K'
+    
+    #Calcul des cles
+    key = genKey(K)
+    
+    print("-----------------------------------------------")
+    
+    #permutation initiale
+    MPI = permutation_initiale(M)
+    print()
 
-#permutation inverse
-M0c = permutation_inverse(R)
-print(decodage(M0c))
+    #scindement
+    G,D =  scindement2(MPI)
+    print("G=", G)
+    print("D=", D)
+    print()
+    print()
+
+    #initialisation de la ronde
+    Gi = G
+    Di = D 
+    print("i= *")
+    print()
+    print("G * =", Gi)
+    print("D * =", Di)
+    print()
+    print()
+
+    #ronde
+    for i in range(16):
+        print("i=", i)
+        print()
+        Dexpand= expansion(Di)
+        Xi = XORL(Dexpand, key[i])
+        print("XORL",i,"=", Xi)
+        Si = selection(Xi)
+        Ti = permutation32(Si)
+        Gi, Di = Di,  XORL(Gi, Ti)
+        print()
+        print("G",i,"=", Gi)
+        print("D",i,"=", Di)
+        print()
+        print()
+    
+    #regroupement INVERSE
+    R = Di + Gi 
+
+    #permutation inverse
+    return permutation_inverse(R)
+
+
+    
+def DESd(M, K):
+    """ Decrypte le message M (binaire de 64 bits) avec la clé K (binaire de 64 bits) par la methode du DES"""
+    #Verification
+    if checkBINn(M, 64) == False: return 'Erreur M'
+    if checkBINn(K, 64) == False: return 'Erreur K'
+    
+    #Calcul des cles
+    key = genKey(K)
+    key.reverse()
+    
+    for j in range(len(key)):
+        print("K.r",j,"=",key[j])
+        print()
+    
+    print("-----------------------------------------------")
+    
+    #permutation initiale
+    MPI = permutation_initiale(M)
+    print()
+
+    #scindement
+    G,D =  scindement2(MPI)
+    print("G=", G)
+    print("D=", D)
+    print()
+    print()
+
+    #initialisation de la ronde
+    Gi = G
+    Di = D 
+    print("i= *")
+    print()
+    print("G * =", Gi)
+    print("D * =", Di)
+    print()
+    print()
+
+    #ronde
+    for i in range(16):
+        print("i=", i)
+        print()
+        Dexpand= expansion(Di)
+        Xi = XORL(Dexpand, key[i])
+        print("XORL",i,"=", Xi)
+        Si = selection(Xi)
+        Ti = permutation32(Si)
+        Gi, Di = Di,  XORL(Gi, Ti)
+        print()
+        print("G",i,"=", Gi)
+        print("D",i,"=", Di)
+        print()
+        print()
+    
+    #regroupement INVERSE
+    R = Di + Gi 
+
+    #permutation inverse
+    return permutation_inverse(R)
+
+
+C = DESc(L,K)
+print()
+print(C)
+print(decodage(C))
+
+
+
+
 
