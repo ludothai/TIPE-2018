@@ -9,8 +9,8 @@ def permutation_initiale(L):
         61,53,45,37,29,21,13, 5,
         63,55,47,39,31,23,15, 7] #Liste de permutation initiale
     Q=[L[i-1] for i in PI]
-    print("Permutation initiale:", Q)
-    print()
+#    print("Permutation initiale:", Q)
+#    print()
     return Q
 
 def scindement2(L):
@@ -28,6 +28,6 @@ def permutation_inverse(L):
          34,2,42,10,50,18,58,26,
          33,1,41, 9,49,17,57,25]
     Q=[L[i-1] for i in PII]
-    print("permutation initiale inverse:", Q)
-    print()
+#    print("permutation initiale inverse:", Q)
+#    print()
     return Q 

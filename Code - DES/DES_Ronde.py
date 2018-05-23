@@ -20,7 +20,7 @@ def expansion(D):
        24,25,26,27,28,29,
        28,29,30,31,32, 1]
     Q = [D[i-1] for i in E]
-    print("expansion: ",Q)
+#    print("expansion: ",Q)
     return Q
 
 def XOR(b1,b2):
@@ -150,22 +150,22 @@ def quatre(chaine):
 
 def somme(D01, D02, D03, D04, D05, D06, D07, D08):
     """Rassemble les valeurs obtenues, créé la table de 32 bits"""
-    print("Bloc de 6: ",D01, D02, D03, D04, D05, D06, D07, D08)
+#    print("Bloc de 6: ",D01, D02, D03, D04, D05, D06, D07, D08)
     Valeurs = [selection1(D01), selection2(D02), selection3(D03), selection4(D04), selection5(D05), selection6(D06), selection7(D07), selection8(D08)]
-    print()
-    print("Valeurs =", Valeurs)
+#    print()
+#    print("Valeurs =", Valeurs)
     ValeursBIN = [bin(Valeurs[i])[2:] for i in range(8)]
-    print("ValeursBIN =", ValeursBIN) #converti les valeurs décimales en binaires
+#    print("ValeursBIN =", ValeursBIN) #converti les valeurs décimales en binaires
     ValeursBINlist =[]
     for i in range(8):
         ValeursBINlist.append(quatre(ValeursBIN[i]))
-    print("ValeursBINlist =", ValeursBINlist)
+#    print("ValeursBINlist =", ValeursBINlist)
     table32 = []
     for i in range(8):
         table32 = table32 + ValeursBINlist[i]
-    print()
-    print("table32 = ", table32)
-    print("len(table32) = ", len(table32))
+#    print()
+#    print("table32 = ", table32)
+#    print("len(table32) = ", len(table32))
     return table32
 
 def selection(D0):
@@ -182,23 +182,7 @@ def permutation32(L):
           2, 8,24,14,32,27, 3, 9,
          19,13,30, 6,22,11, 4,25,]
     Q = [L[i-1] for i in P]
-    print("permutation 32 :", Q)
+#    print("permutation 32 :", Q)
     return Q
 
-
-##############
-#S = somme(D01, D02, D03, D04, D05, D06, D07, D08)
-#print("S = ", S)
-#print("S permute =", permutation32(S) )
-
-##############
-#D0 = [0 for i in range(48)]
-#print("D0=", D0)
-#print()
-#print("lenD0=", len(D0))
-#print("scindement=",scindement8(D0))
-#print("selection=",selection(D0))
-#print("len(selection)=",len(selection(D0)))
-
-##############
 

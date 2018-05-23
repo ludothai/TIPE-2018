@@ -1,5 +1,3 @@
-#K = [0 for i in range(64)]
-
 K = [0,0,0,1,0,0,1,1, 0,0,1,1,0,1,0,0, 0,1,0,1,0,1,1,1, 0,1,1,1,1,0,0,1, 1,0,0,1,1,0,1,1, 1,0,1,1,1,1,0,0, 1,1,0,1,1,1,1,1, 1,1,1,1,0,0,0,1] 
 
 
@@ -31,40 +29,40 @@ def DESc(M, K):
     
     #permutation initiale
     MPI = permutation_initiale(M)
-    print()
+#    print()
 
     #scindement
     G,D =  scindement2(MPI)
-    print("G=", G)
-    print("D=", D)
-    print()
-    print()
+#    print("G=", G)
+#    print("D=", D)
+#    print()
+#    print()
 
     #initialisation de la ronde
     Gi = G
     Di = D 
-    print("i= *")
-    print()
-    print("G * =", Gi)
-    print("D * =", Di)
-    print()
-    print()
+#    print("i= *")
+#    print()
+#    print("G * =", Gi)
+#    print("D * =", Di)
+#    print()
+#    print()
 
     #ronde
     for i in range(16):
-        print("i=", i)
-        print()
+#        print("i=", i)
+#        print()
         Dexpand= expansion(Di)
         Xi = XORL(Dexpand, key[i])
-        print("XORL",i,"=", Xi)
+#        print("XORL",i,"=", Xi)
         Si = selection(Xi)
         Ti = permutation32(Si)
         Gi, Di = Di,  XORL(Gi, Ti)
-        print()
-        print("G",i,"=", Gi)
-        print("D",i,"=", Di)
-        print()
-        print()
+#        print()
+#        print("G",i,"=", Gi)
+#        print("D",i,"=", Di)
+#        print()
+#        print()
     
     #regroupement INVERSE
     R = Di + Gi 
@@ -84,48 +82,48 @@ def DESd(M, K):
     key = genKey(K)
     key.reverse()
     
-    for j in range(len(key)):
-        print("K.r",j,"=",key[j])
-        print()
+#    for j in range(len(key)):
+#        print("K.r",j,"=",key[j])
+#        print()
     
     print("-----------------------------------------------")
     
     #permutation initiale
     MPI = permutation_initiale(M)
-    print()
+#    print()
 
     #scindement
     G,D =  scindement2(MPI)
-    print("G=", G)
-    print("D=", D)
-    print()
-    print()
+#    print("G=", G)
+#    print("D=", D)
+#    print()
+#    print()
 
     #initialisation de la ronde
     Gi = G
     Di = D 
-    print("i= *")
-    print()
-    print("G * =", Gi)
-    print("D * =", Di)
-    print()
-    print()
+#    print("i= *")
+#    print()
+#    print("G * =", Gi)
+#    print("D * =", Di)
+#    print()
+#    print()
 
     #ronde
     for i in range(16):
-        print("i=", i)
-        print()
+#        print("i=", i)
+#        print()
         Dexpand= expansion(Di)
         Xi = XORL(Dexpand, key[i])
-        print("XORL",i,"=", Xi)
+#        print("XORL",i,"=", Xi)
         Si = selection(Xi)
         Ti = permutation32(Si)
         Gi, Di = Di,  XORL(Gi, Ti)
-        print()
-        print("G",i,"=", Gi)
-        print("D",i,"=", Di)
-        print()
-        print()
+#        print()
+#        print("G",i,"=", Gi)
+#        print("D",i,"=", Di)
+#        print()
+#        print()
     
     #regroupement INVERSE
     R = Di + Gi 

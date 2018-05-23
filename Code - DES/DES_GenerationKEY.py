@@ -44,19 +44,19 @@ def genKey(K):
     if checkBINn(K, 64) == False: return "Erreur sur la cle initilale K"
     # permutation initiale CP1:
     G, D = permutationCP1(K)
-    print("Gk=", G)
-    print("Dk=", D)
-    print("")
+#    print("Gk=", G)
+#    print("Dk=", D)
+#    print("")
     if checkBINn(G, 28) == False: return "Erreur sur la cle initiale G"
     if checkBINn(D, 28) == False: return "Erreur sur la cle initiale D"
     for i in range(16):
         Gi = decalageGauche(G, decalage[i])
         Di = decalageGauche(D, decalage[i])
-        print("Gk",i,"=",Gi)
-        print("Dk",i,"=",Di)
+#        print("Gk",i,"=",Gi)
+#        print("Dk",i,"=",Di)
         Ki = permutationCP2(regroupe(Gi, Di))
-        print("K",i,"=",Ki)
-        print()
+#        print("K",i,"=",Ki)
+#        print()
         if checkBINn(Ki, 48) == False: return "Erreur sur la cle Ki"
         cles.append(Ki)
         G = Gi

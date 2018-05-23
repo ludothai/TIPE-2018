@@ -18,12 +18,12 @@ def encodage(m):
             Mfin.append(0)
         for i in binaire:
             Mfin.append(int(i))
-    print("m=",m)
-    print("M=",M)
-    print("Mord=",Mord)
-    print("Mbin=",Mbin)
-    print("Mfin=",Mfin)
-    print()
+#    print("m=",m)
+#    print("M=",M)
+#    print("Mord=",Mord)
+#    print("Mbin=",Mbin)
+#    print("Mfin=",Mfin)
+#    print()
     return Mfin
 
 def decodage(M):
