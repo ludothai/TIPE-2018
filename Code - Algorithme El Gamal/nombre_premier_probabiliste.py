@@ -118,7 +118,7 @@ def MillerRabin_proba(i,j,pas):
 
 def generateur(n):
     q=MillerRabin_generation(n)[1]
-    for k in range(1,10000):
+    for k in range(1,300):
         p=k*q+1
         if MillerRabin_test(p,100):
             while True:
@@ -135,15 +135,13 @@ def generateur(n):
 
 def test_generateur(i,j,pas):
     for n in range(i,j,pas):
-        X=[]
         T=[]
         for s in range(100):
             t1=perf_counter()
-            x=generateur(n)[0]
+            generateur(n)
             t2=perf_counter()
-            X.append(x)
             T.append(t2-t1)
-        print(n,min(X),max(X),sum(X)/100,min(T),max(T),sum(T)/100,sep=';')
+        print(n,min(T),max(T),sum(T)/100,sep=';')
     
 
 
