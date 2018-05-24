@@ -1,4 +1,6 @@
 from math import sqrt
+from random import randint
+from time import perf_counter
 
 def puissmod(a,d,n):
     '''a**d mod n'''
@@ -27,34 +29,65 @@ def inversmod(a,p):
         return u1
 
 
+def lognaif(p,g,x):
+    for i in range(p):
+        if puissmod(g,i,p)==x:
+            return i
+            
+
+
 #Pas de bebe,pas de geant (SHANKS)
 #O(exp(p))
 def shanks(p,g,x): #retourne n tel que x=g**n mod p
     K=int(sqrt(p))+1
+    c=inversmod(puissmod(g,K,p),p)
     A=[(puissmod(g,i,p),i) for i in range(1,K)]
     A.sort(key=lambda x:x[0])
-    print(A)
-    for j in range(1,K):
-        b=(x*inversmod(puissmod(g,K*j,p),p))%p
-        print(b)
+#    print(A)
+    b=x
+    for j in range(K):
+#        print(b)
         if b<int(p/2): #On parcours A dans l'ordre croissant
             i=0
             while i<K-2 and b>A[i][0]:
                 i+=1
             if A[i][0]==b:
                 return A[i][1]+K*j
+            else:
+                b=(b*c)%p
         else: #On parcours A dans l'ordre décroissant
             i=K-2
             while i>0 and b<A[i][0]:
                 i-=1
             if A[i][0]==b:
                return A[i][1]+K*j
+            else:
+                b=(b*c)%p
+
+
+def test_log(i,j,pas):
+    for n in range(i,j,pas):
+        X1=[]
+        X2=[]
+        for s in range(10):
+            p,g=generateur(n)
+            x=puissmod(g,randint(p),p)
+            t1=perf_counter()
+            lognaif(p,g,x)
+            t2=perf_counter()
+            shanks(p,g,x)
+            t3=perf_counter()
+            X1.append(t2-t1)
+            X2.append(t3-t2)
+        print(n,min(X1),max(X1),sum(X1)/10,min(X2),max(X2),sum(X2)/10,sep=';')
+            
 
 
 #p,g,x=457,13,255
 #print(p,g,x,shanks(p,g,x))
+#print(p,g,x,lognaif(p,g,x))
 
-#Calcule de l'indice (Complexe)
+#Calcul de l'indice (Complexe)
 
 
 

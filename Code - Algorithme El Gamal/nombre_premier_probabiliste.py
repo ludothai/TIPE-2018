@@ -1,6 +1,5 @@
 import random as rd
 from time import perf_counter
-import matplotlib.pyplot as plt
 import math
 
 # Génération d'un nombre premier basée su le test de primalité de Miller-Rabin
@@ -131,7 +130,7 @@ def generateur(n):
                     elif i<k:
                         i+=1
                     else:
-                        return k,p,g
+                        return p,g
 
 def test_generateur(i,j,pas):
     for n in range(i,j,pas):
