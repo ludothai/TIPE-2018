@@ -117,7 +117,7 @@ def MillerRabin_proba(i,j,pas):
 
 def generateur(n):
     q=MillerRabin_generation(n)[1]
-    for k in range(1,300):
+    for k in range(1,500):
         p=k*q+1
         if MillerRabin_test(p,100):
             while True:

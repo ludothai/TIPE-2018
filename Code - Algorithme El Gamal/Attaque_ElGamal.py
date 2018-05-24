@@ -1,6 +1,6 @@
-from math import sqrt
 from random import randint
 from time import perf_counter
+from math import exp, sqrt, log
 
 def puissmod(a,d,n):
     '''a**d mod n'''
@@ -67,19 +67,16 @@ def shanks(p,g,x): #retourne n tel que x=g**n mod p
 
 def test_log(i,j,pas):
     for n in range(i,j,pas):
-        X1=[]
         X2=[]
         for s in range(10):
             p,g=generateur(n)
-            x=puissmod(g,randint(p),p)
-            t1=perf_counter()
-            lognaif(p,g,x)
+            x=puissmod(g,randint(3,p),p)
             t2=perf_counter()
             shanks(p,g,x)
             t3=perf_counter()
-            X1.append(t2-t1)
+
             X2.append(t3-t2)
-        print(n,min(X1),max(X1),sum(X1)/10,min(X2),max(X2),sum(X2)/10,sep=';')
+        print(n,min(X2),max(X2),sum(X2)/10,sep=';')
             
 
 
@@ -88,6 +85,10 @@ def test_log(i,j,pas):
 #print(p,g,x,lognaif(p,g,x))
 
 #Calcul de l'indice (Complexe)
+def complexité(i,j,pas):
+    for x in range(i,j,pas):
+        print(x,exp(0.1*log(10**x)*sqrt(log(log(10**x)))),sep=';')
+        
 
-
-
+for n in range(2,100):
+    print(n,0.01*sqrt(10**n),sep=';')
