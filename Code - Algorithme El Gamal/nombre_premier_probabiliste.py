@@ -116,21 +116,22 @@ def MillerRabin_proba(i,j,pas):
     
 
 def generateur(n):
-    q=MillerRabin_generation(n)[1]
-    for k in range(1,500):
-        p=k*q+1
-        if MillerRabin_test(p,100):
-            while True:
-                g=rd.randint(2,p) #Candidat générateur
-                i=1
-                grandordre=True
-                while grandordre:
-                    if puissmod2(g,i,p)==1:
-                        grandordre=False
-                    elif i<k:
-                        i+=1
-                    else:
-                        return p,g
+    while True:
+        q=MillerRabin_generation(n)[1]
+        for k in range(1,500):
+            p=k*q+1
+            if MillerRabin_test(p,100):
+                while True:
+                    g=rd.randint(2,p) #Candidat générateur
+                    i=1
+                    grandordre=True
+                    while grandordre:
+                        if puissmod2(g,i,p)==1:
+                            grandordre=False
+                        elif i<k:
+                            i+=1
+                        else:
+                            return p,g
 
 def test_generateur(i,j,pas):
     for n in range(i,j,pas):
