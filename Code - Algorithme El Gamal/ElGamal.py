@@ -24,6 +24,12 @@ def inversmod(a,p):
     if r1!=1:
         return 'pas inversible'
     else:
+        if u1<1:
+            while u1<1:
+                u1+=p
+        if u1>p:
+            while u1>p:
+                u1-=p
         return u1
 
 
