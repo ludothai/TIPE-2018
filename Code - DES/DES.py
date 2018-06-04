@@ -587,7 +587,7 @@ def DES(m, K):
     return assembler(Mc)
     
 def DES_(M, K):
-    """ Crypte le message m (str) avec la cle K (entier), retourne liste binaire correpondant a m crypter en AINSCII """
+    """ Crypte le message m (str) avec la cle K (entier), retourne liste binaire correpondant a m crypter en AISCII """
     #Verification:
     if checkBINn(M, len(M)) == False : return "Erreur M"
     if type(K) != int: return "Erreur type K"
