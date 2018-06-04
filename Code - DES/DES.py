@@ -556,7 +556,7 @@ def aide():
 
 
 def DES(m, K):
-    """ Crypte le message m (str) avec la cle K (entier), retourne liste binaire correpondant a m crypter en AINSCII """
+    """ Crypte le message m (str) avec la cle K (entier), retourne liste binaire correpondant a m crypter en AISCII """
     #Verification:
     if type(m) != str: return "Erreur type m"
     if type(K) != int: return "Erreur type K"
