@@ -90,5 +90,5 @@ def complexité(i,j,pas):
         print(x,exp(0.1*log(10**x)*sqrt(log(log(10**x)))),sep=';')
         
 
-for n in range(2,100):
-    print(n,0.01*sqrt(10**n),sep=';')
+# for n in range(2,100):
+#     print(n,0.01*sqrt(10**n),sep=';')
