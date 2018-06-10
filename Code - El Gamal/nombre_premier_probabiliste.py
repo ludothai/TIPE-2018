@@ -116,4 +116,3 @@ def generateur2(n):
                 return p
 
 
-
