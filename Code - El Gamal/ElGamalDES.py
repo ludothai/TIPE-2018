@@ -831,4 +831,4 @@ def DES_(M, K):
 print("Entrer 'aide()' pour le fonctionnement")
 
 
-testElDES(1, 250, 10)
+testElDES(1, 20000, 10)
