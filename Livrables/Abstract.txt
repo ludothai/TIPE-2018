@@ -1,5 +1,5 @@
 L’Abstract est à saisir en ligne. Il doit être un résumé en Anglais du travail TIPE. Il peut être commun pour partie entre les différents membres d’un groupe mais il doit y avoir quelques éléments personnels en lien avec le travail de chacun.
 (100 mots max)
 
-My TIPE aims to develop a messaging app using ElGamal cryptography to secure the messages by encrypting and signing them. 
+My TIPE aims to develop a messaging app using ElGamal cryptography to secure the messages by encrypting and signing them. My group and I used small single-board computers called Raspberry Pi to run the app. 
 

@@ -4,7 +4,7 @@ Ce déroulé opérationnel permet de mettre en valeur de façon synthétique les
 
 -Rencontre avec Madame S.Mesnager, chercheuse en cryptographie (, qui nous a orienté vers des méthodes concrètes pour la mise en place du cryptosystème.)
 
--Identification des éléments nécessaires au fonctionnement du crypto-système. 
+-Identification des éléments nécessaires au fonctionnement du cryptosystème. 
 
 -Problème pour trouver une méthode de fabrication d'un grand nombre premier et d'un générateur du groupe cyclique ((Z/pZ)*,x) efficaces d'où l'obligation de passer d'algorithmes déterministes à des algorithmes probabilistes.
 
