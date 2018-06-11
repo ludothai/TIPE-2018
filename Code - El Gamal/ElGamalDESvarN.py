@@ -125,8 +125,6 @@ def testElDES(i,j,pas): #taille du message en nombre de caractères
 
             tchif=0
             tdechif=0
-            tsign=0
-            tverif=0
 
             t1=perf_counter()
             k1,entete,c =chiffrementDES(p,g,cle_dest,m)
