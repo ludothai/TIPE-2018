@@ -93,7 +93,7 @@ def test_ElGamal(): #message à 1000 caractères
         for k in range(10):
             p,g=P[s][k],G[s][k]
             cle_dest=randint(1,p-1)
-            taillebloc=int(log(p)/log(2))
+            taillebloc=int((log(p)/log(2))/8)
             q=1000//taillebloc
             r=1000-q
             B_clair=[randint(1,p-1) for i in range(q)]
@@ -104,22 +104,22 @@ def test_ElGamal(): #message à 1000 caractères
             tsign=0
             tverif=0
             for bloc in B_clair:
-                
+
                 t1=perf_counter()
                 k1,entete,bloc_crypt=chiffrement(p,g,cle_dest,bloc)
                 t2=perf_counter()
                 tchif+=t2-t1
-                
+
                 t1=perf_counter()
                 r,s1=signature(p,g,k1,bloc_crypt)
                 t2=perf_counter()
                 tsign+=t2-t1
-                
+
                 t1=perf_counter()
                 dechiffrement(p,g,cle_dest,entete,bloc_crypt)
                 t2=perf_counter()
                 tdechif+=t2-t1
-                
+
                 t1=perf_counter()
                 verification_signature(p,g,r,s1,entete,bloc_crypt)
                 t2=perf_counter()
@@ -128,11 +128,6 @@ def test_ElGamal(): #message à 1000 caractères
             Tdechif.append(tdechif)
             Tsign.append(tsign)
             Tverif.append(tverif)
-                
-            
+
+
         print(5*(s+1),sum(Tchif)/10,sum(Tdechif)/10,sum(Tsign)/10,sum(Tverif)/10,sep=';')
-        
-                
-                
-        
-        
