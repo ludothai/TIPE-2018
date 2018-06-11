@@ -95,10 +95,10 @@ def RSA_generation(n):
     p=generateur2(n)
     q=generateur2(n) #pas B friable
     phi=(p-1)*(q-1)
-    d=randint(1,phi)
-    while pgcd(phi,d)!=1:
-        d=randint(1,phi)
-    e=inversmod(d,phi)
+    e=3
+    while pgcd(e,phi)!=1:
+        e+=2
+    d=inversmod(e,phi)
     n=p*q
     return n,e,d
 
