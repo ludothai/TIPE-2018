@@ -102,6 +102,13 @@ def blabla(k):
         m = m+ L[j]
     return m
 
+def listTOstrBIN(L):
+    """prend une liste binaire, retourne un str de la liste"""
+    b = ""
+    for i in range(len(L)):
+        b = b+ str(L[i])
+    return b
+
 def testElDES(i,j,pas): #taille du message en nombre de caractères
     '''taille;tchif;tdechif;tsign;tverif'''
     print("n;Tchif;Tdechif;Tsign;Tverif")
@@ -129,7 +136,7 @@ def testElDES(i,j,pas): #taille du message en nombre de caractères
             tchif+=t2-t1
 
             t1=perf_counter()
-            r,s=signature(p,g,k1, 301044260897508821479232697295301540897852931815410431870957136099500311070521101469920248868453032466253331883)
+            r,s=signature(p,g,k1,int(listTOstrBIN(c),2))
             t2=perf_counter()
             tsign+=t2-t1
 
@@ -139,7 +146,7 @@ def testElDES(i,j,pas): #taille du message en nombre de caractères
             tdechif+=t2-t1
 
             t1=perf_counter()
-            verification_signature(p,g,r,s,entete,301044260897508821479232697295301540897852931815410431870957136099500311070521101469920248868453032466253331883)
+            verification_signature(p,g,r,s,entete,int(listTOstrBIN(c),2))
             t2=perf_counter()
             tverif+=t2-t1
 
@@ -831,4 +838,4 @@ def DES_(M, K):
 print("Entrer 'aide()' pour le fonctionnement")
 
 
-testElDES(1, 20000, 10)
+
