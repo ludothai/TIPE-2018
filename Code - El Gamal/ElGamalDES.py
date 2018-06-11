@@ -103,7 +103,7 @@ def blabla(k):
     return m
 
 def listTOstrBIN(L):
-    """prend une liste binaire, retourne un str de la liste"""
+    """prend une liste binaire, retourne str(binaire) de la liste"""
     b = ""
     for i in range(len(L)):
         b = b+ str(L[i])
@@ -111,14 +111,12 @@ def listTOstrBIN(L):
 
 def testElDES(i,j,pas): #taille du message en nombre de caractères
     '''taille;tchif;tdechif;tsign;tverif'''
-    print("n;Tchif;Tdechif;Tsign;Tverif")
+    print("n;Tchif;Tdechif")
     global P
     global G
     for k in range(i,j,pas):
         Tchif=[]
         Tdechif=[]
-        Tsign=[]
-        Tverif=[]
         for s in range(10):
             p,g=P[s],G[s]
             cle_dest=randint(1,p-1)
@@ -136,19 +134,10 @@ def testElDES(i,j,pas): #taille du message en nombre de caractères
             tchif+=t2-t1
 
             t1=perf_counter()
-            r,s=signature(p,g,k1,int(listTOstrBIN(c),2))
-            t2=perf_counter()
-            tsign+=t2-t1
-
-            t1=perf_counter()
             dechiffrementDES(p,g,cle_dest,entete,c)
             t2=perf_counter()
             tdechif+=t2-t1
 
-            t1=perf_counter()
-            verification_signature(p,g,r,s,entete,int(listTOstrBIN(c),2))
-            t2=perf_counter()
-            tverif+=t2-t1
 
 # -------------
 
@@ -185,11 +174,9 @@ def testElDES(i,j,pas): #taille du message en nombre de caractères
 
             Tchif.append(tchif)
             Tdechif.append(tdechif)
-            Tsign.append(tsign)
-            Tverif.append(tverif)
 
 
-        print(k,sum(Tchif)/10,sum(Tdechif)/10,sum(Tsign)/10,sum(Tverif)/10,sep=';')
+        print(k,sum(Tchif)/10,sum(Tdechif)/10,sep=';')
 
 P=[198813605729928448136287614423728297327061207877861229430286974890873557576637442197286607275014958894550700186891638160293159770508452411643121350294666316275401363114370104435755411502517549980165487429,
 103597476818069762936904055157627805821271466994648940082351220992463959289504033398520796884824329947238998522733158996002797313594854346171908244046866467053786690358933853505996134065563718654527123359,
@@ -838,4 +825,4 @@ def DES_(M, K):
 print("Entrer 'aide()' pour le fonctionnement")
 
 
-testElDES(0,5000,10)
+testElDES(1,10000,10)
