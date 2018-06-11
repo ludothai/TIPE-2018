@@ -1,4 +1,5 @@
 from random import randint
+from math import log
 
 def puissmod(a,d,n):
     '''a**d mod n'''
@@ -80,22 +81,24 @@ def dechiffrement(p,g,cle_priv,entete,message_crypt):
 
 #Choix p à 200 chiffres
 
-def test_ElGamal(i,j,pas): #taille du message en nombre de caractères
+def test_ElGamal(): #message à 1000 caractères
     '''taille;tchif;tdechif;tsign;tverif'''
     global P
     global G
-    for k in range(i,j,pas):
+    for s in range(1,len(P)):
         Tchif=[]
         Tdechif=[]
         Tsign=[]
         Tverif=[]
-        for s in range(10):
-            p,g=P[s],G[s]
+        for k in range(10):
+            p,g=P[s][k],G[s][k]
             cle_dest=randint(1,p-1)
-            q=k//83
-            r=k-q
-            max=sum([2**pui for pui in range(8*r)])
-            B_clair=[randint(1,p-1) for i in range(q)]+[randint(1,max)]
+            taillebloc=int(log(p)/log(2))
+            q=1000//taillebloc
+            r=1000-q
+            B_clair=[randint(1,p-1) for i in range(q)]
+            if r>2:
+                B_clair+=[randint(1,sum([2**pui for pui in range(8*r)]))]
             tchif=0
             tdechif=0
             tsign=0
@@ -108,7 +111,7 @@ def test_ElGamal(i,j,pas): #taille du message en nombre de caractères
                 tchif+=t2-t1
                 
                 t1=perf_counter()
-                r,s=signature(p,g,k1,bloc_crypt)
+                r,s1=signature(p,g,k1,bloc_crypt)
                 t2=perf_counter()
                 tsign+=t2-t1
                 
@@ -118,7 +121,7 @@ def test_ElGamal(i,j,pas): #taille du message en nombre de caractères
                 tdechif+=t2-t1
                 
                 t1=perf_counter()
-                verification_signature(p,g,r,s,entete,bloc_crypt)
+                verification_signature(p,g,r,s1,entete,bloc_crypt)
                 t2=perf_counter()
                 tverif+=t2-t1
             Tchif.append(tchif)
@@ -127,7 +130,7 @@ def test_ElGamal(i,j,pas): #taille du message en nombre de caractères
             Tverif.append(tverif)
                 
             
-        print(k,sum(Tchif)/10,sum(Tdechif)/10,sum(Tsign)/10,sum(Tverif)/10,sep=';')
+        print(5*(s+1),sum(Tchif)/10,sum(Tdechif)/10,sum(Tsign)/10,sum(Tverif)/10,sep=';')
         
                 
                 
