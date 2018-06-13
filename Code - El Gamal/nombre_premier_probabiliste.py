@@ -67,7 +67,6 @@ def MillerRabin_temoin(a,n):
 
 
 def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
-
     for t in range(k):
         a=rd.randint(2,n-2)
         if MillerRabin_temoin(a,n):
@@ -86,8 +85,8 @@ def MillerRabin_proba(i,j,pas):
             MillerRabin_test(n,k)
             t2=perf_counter()
         print(k,sum(X)/100,1/(4**k),sep=';')
-            
-    
+
+
 
 def generateur(n):
     while True:
@@ -106,7 +105,7 @@ def generateur(n):
                             i+=1
                         else:
                             return p,g
-                            
+
 def generateur2(n):
     while True:
         q=MillerRabin_generation(n)[1]
@@ -114,5 +113,3 @@ def generateur2(n):
             p=k*q+1
             if MillerRabin_test(p,100):
                 return p
-
-
