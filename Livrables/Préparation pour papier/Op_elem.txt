@@ -1,0 +1,27 @@
+# Puissance modulaire
+exponentiation rapide en base 2
+
+variables : res (résultat)
+            a (base a la puissance 2**i)
+Conversion de l'exposant en binaire
+On parcours l'exposant en binaire :
+   - si le coefficient vaut 1 on multiplie le résultat par a et on en extrait le reste modulo n
+   - on remplace a par a**2
+
+On retourne le résultat
+
+Complexité : O(log(e))
+
+# Inverse modulaire
+Algorithle d'Euclide étendu (recherche des coefficients de l'équation de Bezout)
+
+On calcule ri, ui, vi tels que ri=ui*a+vi*p
+Tant que ri!=0
+q=(ri-1//ri)
+r(i+1)=r(i-1)-q*ri
+u(i+1)=u(i-1)-q*ui
+v(i+1)=v(i-1)-q*vi
+
+On retourne ui puisque ...
+
+Complexité : O((log(p))**2)

@@ -1,0 +1,11 @@
+# Méthode naïve :
+Test des entiers inferieurs à sqrt(n) comme diviseurs de n.
+Si aucun entier divise n, alors n est premier.
+
+Complexité : O(sqrt(n))
+
+# Méthode de Pollard
+
+
+
+Résultat : Courbe
