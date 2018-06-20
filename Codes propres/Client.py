@@ -1,5 +1,3 @@
-## Client
-
 # Threads
 
 from threading import Thread
@@ -40,12 +38,12 @@ class ThreadClientEmission(Thread):
 import sys
 import socket
 
-hote = "localhost"
+hote = "localhost" #Remplacer par l'adresse IP
 port = 12800
 
 connexion_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connexion_serveur.connect((hote, port))
-print("Connexion établie avec le serveur sur le port {}".format(port))
+print("Connexion etablie avec le serveur sur le port {}".format(port))
 
 thread_reception=ThreadClientReception(connexion_serveur)
 thread_emission=ThreadClientEmission(connexion_serveur)

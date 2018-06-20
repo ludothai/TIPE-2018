@@ -2,8 +2,7 @@ import random as rd
 from time import perf_counter
 import math
 
-## Génération d'un nombre premier de manière déterministe
-
+## Generation d'un nombre premier de maniere deterministe
 
 def est_premier(n):
   if n == 2 or n == 3: return True
@@ -33,13 +32,9 @@ def premier_Pollard(n):
                     return n
         n-=1
 
+## Generation d'un nombre premier basee sur le test de primalite de Miller-Rabin
 
-
-
-## Génération d'un nombre premier basée sur le test de primalité de Miller-Rabin
-
-
-def MillerRabin_generation(b): #longueur en base 10 du nombre premier (proba pas premier 10**-30)
+def MillerRabin_generation(b): #longueur en base 10 du nombre premier (proba pas premier 10**-300)
     i=0
     while True:
         i+=1
@@ -47,9 +42,8 @@ def MillerRabin_generation(b): #longueur en base 10 du nombre premier (proba pas
         for k in range(1,b-1) :
             n+=rd.randint(0,9)*10**k
         n+=rd.randint(1,9)*10**b
-        if MillerRabin_test(n,100):
+        if MillerRabin_test(n,500):
             return i,n
-
 
 def MillerRabin_temoin(a,n):
     #Calcul de s et d tels que n-1=2**s*d
@@ -58,30 +52,24 @@ def MillerRabin_temoin(a,n):
     while d%2==0:
         d=d//2
         s+=1
-
     #Premier test
     x=puissmod(a,d,n)
     if x==1 or x==n-1 :
         return False
-
     #Boucle principale
-
     while s>1:
         x=x**2%n
         if x==n-1:
             return False
         s-=1
-
     return True
 
-
-def MillerRabin_test(n,k): #primalité de n a tester et k nombre de boucles
+def MillerRabin_test(n,k): #primalite de n a tester et k nombre de boucles
     for t in range(k):
         a=rd.randint(2,n-2)
         if MillerRabin_temoin(a,n):
             return False
     return True
-
 
 def generateur_ElGamal(n):
     while True:
@@ -90,7 +78,7 @@ def generateur_ElGamal(n):
             p=k*q+1
             if MillerRabin_test(p,100):
                 while True:
-                    g=rd.randint(2,p) #Candidat générateur
+                    g=rd.randint(2,p) #Candidat generateur
                     i=1
                     grandordre=True
                     while grandordre:

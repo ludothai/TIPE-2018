@@ -22,7 +22,7 @@ def dechiffrement(p,g,cle_priv,entete,message_crypt):
 def signature(p,g,k1,message_crypt):
     k2=randint(1,p-1)
     k2inv=inversmod(k2,p-1)
-    while type(k2inv)==str: #tant que le k aléatoire n'est pas inversible mod p-1
+    while type(k2inv)==str: #tant que le k aleatoire n'est pas inversible mod p-1
         k2=randint(1,p-1)
         k2inv=inversmod(k2,p-1)
     r=puissmod(g,k2,p)
@@ -40,7 +40,7 @@ def verification_signature(p,g,r,s,entete,message_crypt):
         return False
 
 def generation_cle(p,g):
-    '''p premier,g générateur'''
+    '''p premier,g generateur'''
     cle_priv=randint(1,p-1)
     cle_publ=puissmod(g,cle_priv,p)
     return cle_priv,cle_publ

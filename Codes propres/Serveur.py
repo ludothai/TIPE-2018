@@ -1,5 +1,3 @@
-## Serveur
-
 # Threads
 
 from threading import Thread
@@ -14,11 +12,9 @@ class ThreadServeurClient(Thread):
         self.pseudo=''
 
     def run(self):
-
         self.connexion_client.send('Entrez votre pseudo : '.encode())
         self.pseudo=self.connexion_client.recv(1024).decode()
         print( 'Client '+str(self.connexion_client.getsockname())+' alias '+self.pseudo)
-
         Continue=True
         while Continue :
             message_recu=self.connexion_client.recv(1024).decode()
@@ -29,11 +25,9 @@ class ThreadServeurClient(Thread):
                 for client in self.L_connexions:
                     if client != self.connexion_client:
                         client.send((self.pseudo+' : '+message_recu).encode())
-
         self.connexion_client.send(b"Deconnexion")
-        print("Deconnecté avec le client {}".format(self.pseudo))
+        print("Deconnecte avec le client {}".format(self.pseudo))
         self.connexion_client.close()
-
 
 # Serveur
 
@@ -56,17 +50,16 @@ except socket.timeout:
     print("Il n'y a pas de clients : Deconnection")
     connexion_principale.close()
     sys.exit()
-print("Connecté avec le client {}".format(infos_connexion))
+print("Connecte avec le client {}".format(infos_connexion))
 L_connexions.append(connexion_client)
 ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
-
 
 while L_connexions != []:
     try:
         connexion_client, infos_connexion = connexion_principale.accept()
     except socket.timeout :
         continue
-    print("Connecté avec le client {}".format(infos_connexion))
+    print("Connecte avec le client {}".format(infos_connexion))
     L_connexions.append(connexion_client)
     ThreadServeurClient(connexion_principale,connexion_client,L_connexions).start()
 

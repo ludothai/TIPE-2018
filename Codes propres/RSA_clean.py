@@ -1,7 +1,5 @@
-
-# Données :
-
-# Privées : p, q, d premier avec (p-1)*(q-1)=phi(p*q)
+# Donnees :
+# Privees : p, q, d premier avec (p-1)*(q-1)=phi(p*q)
 # Publiques : n=p*q, e tel que e*d=1 mod phi(n)
 
 def pgcd(a,b): #algorithme d'Euclide
