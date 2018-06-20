@@ -44,8 +44,8 @@ def test_pollard_rho(i,j,pas): #ordre de grandeur de p et q en base 10
         t2=perf_counter()
         print(k,t2-t1,sep=';')
         
-#Crible algébrique : Complexe
+#Crible algebrique : Complexe
 
-def complexité(i,j,pas):
+def Modele_CribleAlgebrique(i,j,pas):
     for x in range(i,j,pas):
-        print(x,10**(-4)*exp(((64/9)*log(10**x))**(1/3)*(log(log(10**x)))**(2/3)),sep=';')
+        print(x,exp(((64/9)*log(10**x))**(1/3)*(log(log(10**x)))**(2/3)),sep=';')
