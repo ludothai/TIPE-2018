@@ -34,14 +34,14 @@ class ThreadServeurClient(Thread):
 import sys
 import socket
 
-hote=''
+hote='IP_DE_L_HOTE'
 port = 12800
 
 connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connexion_principale.bind((hote, port))
 connexion_principale.listen(5)
 connexion_principale.settimeout(20)
-print("Le serveur écoute à présent sur le port {}".format(port))
+print("Le serveur ecoute a present sur le port {}".format(port))
 
 L_connexions=[]
 try:

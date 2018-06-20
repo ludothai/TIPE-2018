@@ -1,5 +1,5 @@
 def puissmod(a,d,n):
-    '''a**d mod n'''
+    """a**d mod n"""
     #iteratif : beaucoup plus efficace (10^-5) 600 chiffres -> 0.025 s
     dbin=bin(d)
     L=[int(dbin[-i-1]) for i in range(len(dbin)-2)]
@@ -12,7 +12,7 @@ def puissmod(a,d,n):
     return res
 
 def inversmod(a,p):
-    '''a**(-1) mod p'''
+    """a**(-1) mod p"""
     #algorithme d'Euclide etendu (solution de l'equation de Bezout)
     r1,u1,v1,r2,u2,v2=a,1,0,p,0,1
 
@@ -20,7 +20,7 @@ def inversmod(a,p):
         q=r1//r2
         r1,u1,v1,r2,u2,v2=r2,u2,v2,r1-q*r2,u1-q*u2,v1-q*v2
     if r1!=1:
-        return 'pas inversible'
+        return "pas inversible"
     else:
         if u1<1:
             while u1<1:
@@ -29,4 +29,3 @@ def inversmod(a,p):
             while u1>p:
                 u1-=p
         return u1
-
