@@ -34,7 +34,7 @@ class ThreadServeurClient(Thread):
 import sys
 import socket
 
-hote='IP_DE_L_HOTE'
+hote='' # vide car le serveur accepte toutes les connexions
 port = 12800
 
 connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
