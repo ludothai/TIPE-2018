@@ -71,10 +71,12 @@ def MillerRabin_test(n,k): #primalite de n a tester et k nombre de boucles
             return False
     return True
 
+## Fabriquer un générateur g et un grand nombre premier p associé
+
 def generateur_ElGamal(n):
     while True:
         q=MillerRabin_generation(n)[1]
-        for k in range(1,500):
+        for k in range(2,500):
             p=k*q+1
             if MillerRabin_test(p,100):
                 while True:
