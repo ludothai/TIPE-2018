@@ -1,4 +1,4 @@
-# ***************************** ENCODAGE DES CARACTERES ***************************** 
+# ***************************** ENCODAGE DES CARACTERES *****************************
 #Codage du message 1 caractere = 8 bits
 
 def encodage(m):
@@ -43,7 +43,7 @@ def decodage(M):
         m+=Mchr[i]
     return m
 
-# ***************************** GENERATION DES CLES ***************************** 
+# ***************************** GENERATION DES CLES *****************************
 def permutationCP1(K):
     """Effectue la permutation initiale de la cle de 64 bits, retourne les listes G0 et D0"""
     if len(K) != 64 : return "Erreur len(K)"
@@ -65,7 +65,7 @@ def decalageGauche(L, n):
     for i in range(n):
         Ldec.append(L[i])
     return Ldec
-        
+
 def regroupe(G,D):
     return G+D
 
@@ -107,9 +107,9 @@ def genKey(K):
         cles.append(Ki)
         G = Gi
         D = Di
-        
+
     return cles
-        
+
 def checkBINn(L, n):
     """ verifie que la liste L est une liste contenant n elements binaire (0 ou 1)"""
     binaire = [0,1]
@@ -118,15 +118,15 @@ def checkBINn(L, n):
             if L[i] not in binaire:
                 return False
         return True
-    else: 
-        return False    
+    else:
+        return False
 
 def gen(n):
     return ([(i+1)*10 for i in range(n)])
 
 
 
-# ***************************** PERMUTATIONS ***************************** 
+# ***************************** PERMUTATIONS *****************************
 def permutation_initiale(L):
     """Permute les élements de L selon l'ordre de permutation défini par PI"""
     PI=[58,50,42,34,26,18,10, 2,
@@ -159,10 +159,10 @@ def permutation_inverse(L):
     Q=[L[i-1] for i in PII]
 #    print("permutation initiale inverse:", Q)
 #    print()
-    return Q 
+    return Q
 
-# ***************************** RONDE ***************************** 
-    
+# ***************************** RONDE *****************************
+
 def expansion(D):
     """Etend les 32 bits du bloc DO en 48 bits dans Q"""
     E=[32, 1, 2, 3, 4, 5,
@@ -315,7 +315,7 @@ def somme(D01, D02, D03, D04, D05, D06, D07, D08):
 
 def selection(D0):
     """Etape de selection d'une liste D0 de 48 bits en une liste de 32 bits"""
-    #vérification 
+    #vérification
     if checkBINn(D0, 48) == False : return "Erreur LO"
     #scindement :
     D0i = scindement8(D0)
@@ -331,7 +331,7 @@ def permutation32(L):
     return Q
 
 # ***************************** ENCODAGE CLE *****************************
-    
+
 def intbin(K):
     """ Retourne l'entier positif K en binaire dans une liste L"""
     if type(K) != int: return "Erreur type K"
@@ -352,18 +352,18 @@ def binint(L):
 
 def min64(L):
     """ Verifie et normalise avec des 0 devants la liste L tel que contienne au moins 64 bits """
-    if len(L)>63 : 
+    if len(L)>63 :
         return L
-    else: 
+    else:
         n = len(L)
         Q = L[:]
         Q.reverse()
         for i in range(64-n):
             Q.append(int(0))
         Q.reverse()
-        return Q 
-    
-# ***************************** FONCTIONS DE DECOUPAGE ***************************** 
+        return Q
+
+# ***************************** FONCTIONS DE DECOUPAGE *****************************
 espace = [0, 0, 1, 0, 0, 0, 0, 0] #(ord 32) Caractere [espace] en binaire 8 bits AISCII
 
 def decoupe64(l):
@@ -393,9 +393,9 @@ def assembler(B):
         L+=B[i]
     return L
 
-    
+
 # ***************************** FONCTION DE VERIFICATION *****************************
-    
+
 def checkBINn(L, n):
     """ verifie que la liste L est une liste contenant n elements binaire (0 ou 1)"""
     binaire = [0,1]
@@ -404,22 +404,22 @@ def checkBINn(L, n):
             if L[i] not in binaire:
                 return False
         return True
-    else: 
-        return False 
+    else:
+        return False
 
 # ***************************** MAIN *****************************
-        
+
 def DESc(M, K):
     """ Crypte le message M (binaire de 64 bits) avec la clé K (binaire de 64 bits) par la methode du DES"""
     #Verification
     if checkBINn(M, 64) == False: return 'Erreur M'
     if checkBINn(K, 64) == False: return 'Erreur K'
-    
+
     #Calcul des cles
     key = genKey(K)
-    
+
 #    print("-----------------------------------------------")
-    
+
     #permutation initiale
     MPI = permutation_initiale(M)
 #    print()
@@ -433,7 +433,7 @@ def DESc(M, K):
 
     #initialisation de la ronde
     Gi = G
-    Di = D 
+    Di = D
 #    print("i= *")
 #    print()
 #    print("G * =", Gi)
@@ -456,31 +456,31 @@ def DESc(M, K):
 #        print("D",i,"=", Di)
 #        print()
 #        print()
-    
+
     #regroupement INVERSE
-    R = Di + Gi 
+    R = Di + Gi
 
     #permutation inverse
     return permutation_inverse(R)
 
 
-    
+
 def DESd(M, K):
     """ Decrypte le message M (binaire de 64 bits) avec la clé K (binaire de 64 bits) par la methode du DES"""
     #Verification
     if checkBINn(M, 64) == False: return 'Erreur M'
     if checkBINn(K, 64) == False: return 'Erreur K'
-    
+
     #Calcul des cles
     key = genKey(K)
     key.reverse()
-    
+
 #    for j in range(len(key)):
 #        print("K.r",j,"=",key[j])
 #        print()
-    
+
 #    print("-----------------------------------------------")
-    
+
     #permutation initiale
     MPI = permutation_initiale(M)
 #    print()
@@ -494,7 +494,7 @@ def DESd(M, K):
 
     #initialisation de la ronde
     Gi = G
-    Di = D 
+    Di = D
 #    print("i= *")
 #    print()
 #    print("G * =", Gi)
@@ -517,9 +517,9 @@ def DESd(M, K):
 #        print("D",i,"=", Di)
 #        print()
 #        print()
-    
+
     #regroupement INVERSE
-    R = Di + Gi 
+    R = Di + Gi
 
     #permutation inverse
     return permutation_inverse(R)
@@ -527,7 +527,7 @@ def DESd(M, K):
 # ----------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------
-    
+
 def aide():
     print("-----------------------------------------")
     print("************* FONCTIONEMENT *************")
@@ -549,7 +549,7 @@ def aide():
     print("-----------------------------------------")
     print("****************** FIN ******************")
     print("-----------------------------------------")
-    
+
 # ----------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------
@@ -560,7 +560,7 @@ def DES(m, K):
     #Verification:
     if type(m) != str: return "Erreur type m"
     if type(K) != int: return "Erreur type K"
-    
+
     Kentiere = intbin(K)
 #    print("Kentiere =", Kentiere)
 #    print()
@@ -568,7 +568,7 @@ def DES(m, K):
     Kentiere.reverse()
 #    print("Kentiere normaliser inverse=", Kentiere)
 #    print()
-    
+
     key = Kentiere[:64]
 #    print("Cle =", K,"-->", "key =",key )
 #    print()
@@ -577,21 +577,21 @@ def DES(m, K):
 #    for i in range(16):
 #        print("Sous-cle",i,"=",cles[i])
 #        print()
-    
+
     M = decoupe64(encodage(m))
     n = len(M) # nombre de blocs de 64 bits
     Mc = [] # M crypte
     for i in range(n):
         Mc.append(DESc(M[i], key))
-    
+
     return assembler(Mc)
-    
+
 def DES_(M, K):
     """ Crypte le message m (str) avec la cle K (entier), retourne liste binaire correpondant a m crypter en AISCII """
     #Verification:
     if checkBINn(M, len(M)) == False : return "Erreur M"
     if type(K) != int: return "Erreur type K"
-    
+
     Kentiere = intbin(K)
 #    print("Kentiere =", Kentiere)
 #    print()
@@ -599,7 +599,7 @@ def DES_(M, K):
     Kentiere.reverse()
 #    print("Kentiere normaliser inverse=", Kentiere)
 #    print()
-    
+
     key = Kentiere[:64]
     print("Cle =", K,"-->", "key =",key )
     print()
@@ -608,14 +608,14 @@ def DES_(M, K):
 #    for i in range(16):
 #        print("Sous-cle",i,"=",cles[i])
 #        print()
-    
+
     Mc = decoupe64(M)
 #    print("Mc =",Mc)
 #    n = len(Mc) # nombre de blocs de 64 bits
     Mclair = [] # M decrypte
     for i in range(n):
         Mclair.append(DESd(Mc[i], key))
-    
+
     return decodage(assembler(Mclair))
 
 
